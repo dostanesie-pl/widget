@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>dostanesie.pl - dev widget page</title>
+</head>
+<body>
+
+<div id="dev-widget"></div>
+
+<script type="module" src="/src/main.ts"></script>
+
+<script>
+    window.addEventListener('load', () => {
+        const container = document.getElementById('dev-widget');
+        if (container) {
+            window.initDstplWidget?.(container, {});
+        }
+    });
+</script>
+
+</body>
+</html>
