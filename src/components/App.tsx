@@ -7,7 +7,7 @@ const App = () => {
     <Provider>
       <Flex flexDir="column" gap={2}>
         <Flex>
-          <Button px={[0, 10]}>Just a chakra button</Button>
+          <Button px={[0, 10]}>Just a chakra button .</Button>
         </Flex>
       </Flex>
     </Provider>
