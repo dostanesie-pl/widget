@@ -6,9 +6,8 @@ const App = () => {
   return (
     <Provider>
       <Flex flexDir="column" gap={2}>
-        <Text>Inside shadow dom!</Text>
         <Flex>
-          <Button>Just a chakra button</Button>
+          <Button px={[0, 10]}>Just a chakra button</Button>
         </Flex>
       </Flex>
     </Provider>

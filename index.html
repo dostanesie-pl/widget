@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <title>dostanesie.pl - dev widget page</title>
 </head>
 <body>
 
-<div id="dev-widget"></div>
+<div style="display: flex; gap: 20px">
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+        <span>mobile (375px x 667px)</span>
+        <iframe src="./src/utils/dev.html" style="width: 375px; height: 667px; border: 1px solid #d5d5d5"></iframe>
+    </div>
 
-<script type="module" src="/src/main.ts"></script>
-
-<script>
-    window.addEventListener('load', () => {
-        const container = document.getElementById('dev-widget');
-        if (container) {
-            window.initDstplWidget?.(container, {});
-        }
-    });
-</script>
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+        <span>desktop (675px x 667px)</span>
+        <iframe src="./src/utils/dev.html" style="width: 675px; height: 667px; border: 1px solid #d5d5d5"></iframe>
+    </div>
+</div>
 
 </body>
 </html>
