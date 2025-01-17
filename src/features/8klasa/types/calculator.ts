@@ -25,9 +25,9 @@ export enum LanguageCode {
 
 type LanguageExam = {
   languageCode: LanguageCode;
-  score: number | null;
+  score: string | null;
   exempt: boolean;
-  degree: number | null;
+  degree: string | null;
 };
 
 export interface CertificateSubject {

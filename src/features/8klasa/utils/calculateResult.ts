@@ -28,9 +28,9 @@ export const calculateResult = (values: FormValues): number => {
   });
 
   if (!values.examLanguage.exempt && values.examLanguage.score) {
-    sum = sum + values.examLanguage.score * 0.3;
+    sum = sum + parseInt(values.examLanguage.score) * 0.3;
   } else if (values.examLanguage.exempt && values.examLanguage.degree) {
-    sum = sum + degreeExemptOtherSubjectMapping[values.examLanguage.degree];
+    sum = sum + degreeExemptOtherSubjectMapping[parseInt(values.examLanguage.degree)];
   }
 
   let contestsSum = 0;
