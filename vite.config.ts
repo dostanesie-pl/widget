@@ -2,10 +2,17 @@ import { defineConfig, UserConfig } from "vite";
 import preact from "@preact/preset-vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { resolve } from "path";
+import svgLoader from "vite-svg-loader";
 
 // Shared configuration
 const sharedConfig: UserConfig = {
-  plugins: [tsconfigPaths(), preact()],
+  plugins: [
+    tsconfigPaths(),
+    preact(),
+    svgLoader({
+      defaultImport: "url",
+    }),
+  ],
   define: {
     // need to override NODE_ENV,
     // otherwise react-is throws reference error in prod build
@@ -48,6 +55,8 @@ export default defineConfig(({ mode }) => {
     case "lib":
       return libConfig;
     case "static":
+      return staticConfig;
+    case "development":
       return staticConfig;
     default:
       throw new Error(`Unsupported mode: ${mode}`);

@@ -1,5 +1,5 @@
 import { render, h } from 'preact';
-import App from './components/App';
+import App from './App';
 
 declare global {
   interface Window {
