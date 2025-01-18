@@ -10,6 +10,7 @@ import {
   NumberInputRoot,
 } from "@/components/ui/number-input";
 import { Field } from "@/components/ui/field";
+import Subjects from "@/assets/fetched/subjects.json";
 
 export const CertificateFields = () => {
   const {
@@ -30,7 +31,12 @@ export const CertificateFields = () => {
         Świadectwo
       </Text>
 
-      <Flex flexDirection="column" h="100%" justifyContent="space-evenly" gap={1}>
+      <Flex
+        flexDirection="column"
+        h="100%"
+        justifyContent="space-evenly"
+        gap={1}
+      >
         {certificateFields.map((field, index) => (
           <Flex key={index} flexDirection="column">
             <Grid templateColumns="2fr 1fr" gap={3} alignItems="center">
@@ -43,7 +49,7 @@ export const CertificateFields = () => {
                     }
                   >
                     <option value="">wybierz przedmiot</option>
-                    {[{ full_name: "j. polski" }].map((subject) => (
+                    {Subjects.map((subject) => (
                       <option key={subject.full_name} value={subject.full_name}>
                         {subject.full_name}
                       </option>
@@ -54,15 +60,13 @@ export const CertificateFields = () => {
                 <Text>{field.name}</Text>
               )}
 
-              <Field
-                invalid={!!errors.certificate?.subjects?.[index]?.score}
-              >
+              <Field invalid={!!errors.certificate?.subjects?.[index]?.score}>
                 <Controller
                   name={`certificate.subjects.${index}.score`}
                   control={control}
                   rules={{
                     min: 1,
-                    max: 6
+                    max: 6,
                   }}
                   render={({ field }) => (
                     <NumberInputRoot
