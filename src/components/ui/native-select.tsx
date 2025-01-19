@@ -45,7 +45,7 @@ export const NativeSelectField = React.forwardRef<
   )
 
   return (
-    <Select.Field ref={ref} {...rest}>
+    <Select.Field ref={ref} {...rest} touchAction="manipulation">
       {children}
       {items?.map((item) => (
         <option key={item.value} value={item.value} disabled={item.disabled}>

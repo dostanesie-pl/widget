@@ -9,7 +9,7 @@ export const NumberInputRoot = React.forwardRef<
 >(function NumberInput(props, ref) {
   const { children, ...rest } = props
   return (
-    <ChakraNumberInput.Root ref={ref} variant="outline" {...rest}>
+    <ChakraNumberInput.Root ref={ref} variant="outline" {...rest} touchAction="manipulation" spinOnPress={false}>
       {children}
       <ChakraNumberInput.Control>
         <ChakraNumberInput.IncrementTrigger />
