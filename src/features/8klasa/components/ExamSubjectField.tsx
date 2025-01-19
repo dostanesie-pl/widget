@@ -63,8 +63,6 @@ export const ExamSubjectField = ({
                   field.onChange(value);
                 }}
                 w="100%"
-                min={1}
-                max={6}
               >
                 <NumberInputField onBlur={field.onBlur} placeholder="ocena" />
               </NumberInputRoot>
@@ -92,8 +90,6 @@ export const ExamSubjectField = ({
                 }}
                 w="100%"
                 step={5}
-                min={0}
-                max={100}
               >
                 <NumberInputField onBlur={field.onBlur} placeholder="wynik %" />
               </NumberInputRoot>
