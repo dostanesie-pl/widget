@@ -75,6 +75,8 @@ export const CertificateFields = () => {
                       onValueChange={({ value }) => {
                         field.onChange(value);
                       }}
+                      min={1}
+                      max={6}
                     >
                       <NumberInputField onBlur={field.onBlur} />
                     </NumberInputRoot>
