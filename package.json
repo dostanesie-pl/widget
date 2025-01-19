@@ -4,10 +4,10 @@
   "type": "module",
   "scripts": {
     "postinstall": "tsx src/utils/fetchSubjectsCli/index.ts",
-    "dev": "vite",
-    "build:lib": "tsc --noEmit && vite build --mode lib",
-    "build:static": "tsc --noEmit && vite build --mode static",
-    "preview": "vite preview --mode static"
+    "dev": "vite --host",
+    "build:lib": "rm -rf dist/ && tsc --noEmit && vite build --mode lib",
+    "build:static": "rm -rf dist/ && tsc --noEmit && vite build --mode static",
+    "preview": "pnpm build:static && vite preview --mode static --host"
   },
   "dependencies": {
     "@chakra-ui/react": "3.3.3",
