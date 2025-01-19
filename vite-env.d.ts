@@ -6,3 +6,11 @@ declare module '@/assets/fetched/subjects.json' {
   const value: ISubject[];
   export default value;
 }
+
+interface ImportMetaEnv {
+  readonly VITE_WIDGET_VERSION: string
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
