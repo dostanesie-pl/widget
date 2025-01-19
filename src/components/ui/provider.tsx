@@ -5,14 +5,15 @@ import { CacheProvider } from "@emotion/react";
 import { ThemeProvider, type ThemeProviderProps } from "next-themes";
 import root from "react-shadow/emotion";
 import { system } from "./system";
+import { useEffect, useState } from "preact/hooks";
 
+import { ComponentChildren } from "preact";
 import { EnvironmentProvider } from "@chakra-ui/react/env";
 import { ChakraProvider } from "@chakra-ui/react/styled-system";
-import { ReactNode, useEffect, useState } from "react";
 
 export function Provider(
   // ComponentChildren required because we are in preact
-  props: ThemeProviderProps & { children: ReactNode },
+  props: ThemeProviderProps & { children: ComponentChildren },
 ) {
   const [shadow, setShadow] = useState<HTMLElement | null>(null);
   const [cache, setCache] = useState<ReturnType<typeof createCache> | null>(
