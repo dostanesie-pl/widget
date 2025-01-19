@@ -45,7 +45,7 @@ export const ExamSubjectField = ({
       </Flex>
 
       {watch(`${fieldPath}.exempt`) ? (
-        <Field invalid={!!degreeError}>
+        <Field invalid={!!degreeError} key="degree">
           <Controller
             name={`${fieldPath}.degree`}
             control={control}
@@ -71,7 +71,7 @@ export const ExamSubjectField = ({
           </Text>
         </Field>
       ) : (
-        <Field invalid={!!scoreError}>
+        <Field invalid={!!scoreError} key="score">
           <Controller
             name={`${fieldPath}.score`}
             control={control}
