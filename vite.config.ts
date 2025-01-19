@@ -1,14 +1,15 @@
 import { defineConfig, UserConfig } from "vite";
-import preact from "@preact/preset-vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { resolve } from "path";
 import svgLoader from "vite-svg-loader";
+import react from '@vitejs/plugin-react'
 
 // Shared configuration
 const sharedConfig: UserConfig = {
   plugins: [
     tsconfigPaths(),
-    preact(),
+    // preact(),
+    react(),
     svgLoader({
       defaultImport: "url",
     }),
