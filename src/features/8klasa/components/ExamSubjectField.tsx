@@ -3,6 +3,7 @@ import {
   FieldPath,
   useController,
   useFormContext,
+  useWatch,
 } from "react-hook-form";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { Flex, Text } from "@chakra-ui/react";
@@ -23,7 +24,8 @@ export const ExamSubjectField = ({
     "exams.pl" | "exams.math" | "examLanguage"
   >;
 }) => {
-  const { control, register, watch } = useFormContext<FormValues>();
+  const { control, register } = useFormContext<FormValues>();
+  const isExempt = useWatch({ name: `${fieldPath}.exempt` });
 
   const {
     fieldState: { error: scoreError },
@@ -44,7 +46,7 @@ export const ExamSubjectField = ({
         </Checkbox>
       </Flex>
 
-      {watch(`${fieldPath}.exempt`) ? (
+      {isExempt ? (
         <Field invalid={!!degreeError} key="degree">
           <Controller
             name={`${fieldPath}.degree`}
