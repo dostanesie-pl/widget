@@ -8,6 +8,7 @@ import DostanesieLogo from "@/assets/dostanesieLogo.svg";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { defaultFormValues } from "@/features/8klasa/consts/defaultFormValues";
 import { ExtraPoints } from "@/features/8klasa/components/ExtraPoints";
+import { ContestsFields } from "@/features/8klasa/components/ContestsFields";
 
 export const CalculatorForm = () => {
   const form = useForm<FormValues>({
@@ -42,6 +43,10 @@ export const CalculatorForm = () => {
 
         <Flex px={4}>
           <ExtraPoints />
+        </Flex>
+
+        <Flex px={4}>
+          <ContestsFields />
         </Flex>
 
         <Flex
