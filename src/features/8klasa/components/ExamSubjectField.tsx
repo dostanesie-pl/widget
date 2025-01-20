@@ -43,7 +43,7 @@ export const ExamSubjectField = ({
       <Flex justifyContent="space-between" w="100%" gap={2}>
         {typeof title === "string" ? <Text>{title}</Text> : title}
 
-        <Checkbox {...register(`${fieldPath}.exempt`)} colorScheme="yellow">
+        <Checkbox {...register(`${fieldPath}.exempt`)}>
           zwolniony
         </Checkbox>
       </Flex>
