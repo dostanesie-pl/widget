@@ -13,12 +13,13 @@ import {
   NumberInputField,
   NumberInputRoot,
 } from "@/components/ui/number-input";
+import { ReactNode } from "react";
 
 export const ExamSubjectField = ({
   title,
   fieldPath,
 }: {
-  title: string;
+  title: string | ReactNode;
   fieldPath: Extract<
     FieldPath<FormValues>,
     "exams.pl" | "exams.math" | "examLanguage"
@@ -39,8 +40,9 @@ export const ExamSubjectField = ({
 
   return (
     <Flex flexDirection="column" gap={2}>
-      <Flex justifyContent="space-between" w="100%">
-        <Text>{title}</Text>
+      <Flex justifyContent="space-between" w="100%" gap={2}>
+        {typeof title === "string" ? <Text>{title}</Text> : title}
+
         <Checkbox {...register(`${fieldPath}.exempt`)} colorScheme="yellow">
           zwolniony
         </Checkbox>

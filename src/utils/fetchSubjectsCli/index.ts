@@ -3,8 +3,12 @@ import QueryStringAddon from "wretch/addons/queryString";
 import { IApiSubject, ISubject } from "@/utils/fetchSubjectsCli/types";
 import { writeFileSync } from "fs";
 
-const trimSubject = (subjects: IApiSubject[]): ISubject[] =>
-  subjects.map(({ name, full_name }) => ({ name, full_name }));
+const trimSubject = (subject: IApiSubject): ISubject =>
+  ({
+    name:subject.name,
+    full_name: subject.full_name,
+    is_foreign: subject.name.includes("language_") && subject.name !== "language_pl_advanced",
+  })
 
 const main = async () => {
   try {
@@ -16,7 +20,7 @@ const main = async () => {
       .json<IApiSubject[]>();
 
     const filePath = "src/assets/fetched/subjects.json";
-    const trimmedData = trimSubject(data);
+    const trimmedData = data.map(trimSubject);
     writeFileSync(filePath, JSON.stringify(trimmedData), "utf-8");
 
     console.log("Subjects successfully saved to:", filePath);
