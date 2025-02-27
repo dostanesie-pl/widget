@@ -26,7 +26,7 @@ export const SubjectDegreeField = ({
           }}
           min={1}
           max={6}
-          colorPalette="yellow"
+          colorPalette="yellowCustom"
         />
       )}
     />
