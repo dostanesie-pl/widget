@@ -7,13 +7,13 @@ import {
 } from "react-hook-form";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { Flex, Text } from "@chakra-ui/react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Field } from "@/components/ui/field";
 import {
   NumberInputField,
   NumberInputRoot,
 } from "@/components/ui/number-input";
 import { ReactNode } from "react";
+import { CheckboxInvertedLabel } from "@/components/ui/checkboxInvertedLabel";
 
 export const ExamSubjectField = ({
   title,
@@ -40,68 +40,83 @@ export const ExamSubjectField = ({
 
   return (
     <Flex flexDirection="column" gap={2}>
-      <Flex justifyContent="space-between" w="100%" gap={2}>
+      <Flex justifyContent="space-between" w="100%" gap={2} fontWeight={600}>
         {typeof title === "string" ? <Text>{title}</Text> : title}
-
-        <Checkbox {...register(`${fieldPath}.exempt`)}>
-          zwolniony
-        </Checkbox>
       </Flex>
 
-      {isExempt ? (
-        <Field invalid={!!degreeError} key="degree">
-          <Controller
-            name={`${fieldPath}.degree`}
-            control={control}
-            rules={{
-              min: 1,
-              max: 6,
-            }}
-            render={({ field }) => (
-              <NumberInputRoot
-                name={field.name}
-                value={field.value || undefined}
-                onValueChange={({ value }) => {
-                  field.onChange(value);
-                }}
-                w="100%"
-              >
-                <NumberInputField onBlur={field.onBlur} placeholder="ocena" />
-              </NumberInputRoot>
-            )}
-          />
-          <Text fontSize="sm" color="red.500" h={3}>
-            {degreeError && "Ocena musi być z przedziału 1-6"}
-          </Text>
-        </Field>
-      ) : (
-        <Field invalid={!!scoreError} key="score">
-          <Controller
-            name={`${fieldPath}.score`}
-            control={control}
-            rules={{
-              min: 0,
-              max: 100,
-            }}
-            render={({ field }) => (
-              <NumberInputRoot
-                name={field.name}
-                value={field.value || undefined}
-                onValueChange={({ value }) => {
-                  field.onChange(value);
-                }}
-                w="100%"
-                step={5}
-              >
-                <NumberInputField onBlur={field.onBlur} placeholder="wynik %" />
-              </NumberInputRoot>
-            )}
-          />
-          <Text fontSize="sm" color="red.500" h={3}>
-            {scoreError && "Wynik z egzaminu musi być z przedziału 0-100"}
-          </Text>
-        </Field>
-      )}
+      <Flex gap={5}>
+        {isExempt ? (
+          <Field invalid={!!degreeError} key="degree">
+            <Controller
+              name={`${fieldPath}.degree`}
+              control={control}
+              rules={{
+                min: 1,
+                max: 6,
+              }}
+              render={({ field }) => (
+                <NumberInputRoot
+                  name={field.name}
+                  value={field.value || undefined}
+                  onValueChange={({ value }) => {
+                    field.onChange(value);
+                  }}
+                  w="100%"
+                >
+                  <NumberInputField onBlur={field.onBlur} placeholder="ocena" />
+                </NumberInputRoot>
+              )}
+            />
+          </Field>
+        ) : (
+          <Field invalid={!!scoreError} key="score">
+            <Controller
+              name={`${fieldPath}.score`}
+              control={control}
+              rules={{
+                min: 0,
+                max: 100,
+              }}
+              render={({ field }) => (
+                <NumberInputRoot
+                  name={field.name}
+                  value={field.value || undefined}
+                  onValueChange={({ value }) => {
+                    field.onChange(value);
+                  }}
+                  w="100%"
+                  step={5}
+                >
+                  <NumberInputField
+                    onBlur={field.onBlur}
+                    placeholder="wynik %"
+                  />
+                </NumberInputRoot>
+              )}
+            />
+          </Field>
+        )}
+
+        <Flex>
+          <CheckboxInvertedLabel
+            {...register(`${fieldPath}.exempt`)}
+            flexDirection="column"
+            gap={1}
+            fontSize="sm"
+            fontWeight={400}
+          >
+            zwolniony
+          </CheckboxInvertedLabel>
+        </Flex>
+      </Flex>
+
+      <Text fontSize="xs" color="red.500">
+        {!isExempt &&
+          scoreError &&
+          "Wynik z egzaminu musi być z przedziału 0-100"}
+
+        {isExempt && degreeError && "Ocena musi być z przedziału 1-6"}
+      </Text>
     </Flex>
   );
 };

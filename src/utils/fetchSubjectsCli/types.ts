@@ -13,7 +13,7 @@ export interface IApiSubject {
   short_name: string;
 }
 
-export type ISubject = { is_foreign: boolean } & Pick<
-  IApiSubject,
-  "name" | "full_name"
->;
+export type ISubject = {
+  is_foreign: boolean;
+  abbreviation: string | null;
+} & Pick<IApiSubject, "name" | "full_name">;

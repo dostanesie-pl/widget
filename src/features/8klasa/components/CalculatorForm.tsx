@@ -1,10 +1,11 @@
 import { FormProvider, useForm } from "react-hook-form";
-import { Flex, Heading, Image } from "@chakra-ui/react";
+import { Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { FieldsSection } from "@/features/8klasa/components/FieldsSection";
 import { ExamFields } from "@/features/8klasa/components/ExamFields";
 import { CertificateFields } from "@/features/8klasa/components/CertificateFields";
 import { UserScore } from "@/features/8klasa/components/UserScore";
 import DostanesieLogo from "@/assets/dostanesieLogo.svg";
+import DostanesieLogoQuestionMark from "@/assets/dostanesieLogoQuestionMark.svg";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { defaultFormValues } from "@/features/8klasa/consts/defaultFormValues";
 import { ExtraPoints } from "@/features/8klasa/components/ExtraPoints";
@@ -20,18 +21,32 @@ export const CalculatorForm = () => {
     <FormProvider {...form}>
       <Flex
         flexDir="column"
-        gap={2}
+        gap={8}
         m={1}
-        border="1px solid"
-        borderColor="gray.300"
+        p={2}
         rounded="xl"
-        shadow="md"
+        shadow="0px 4px 4px 0px #00000040"
       >
-        <Flex p={2} justifyContent="center">
-          <Heading>Oblicz swoje punkty do szkoły</Heading>
+        <Flex>
+          <Flex flexDir="column" gap={4}>
+            <Heading fontSize="2xl">Kalkulator</Heading>
+
+            <Text maxW={["100%", "70%"]}>
+              Poniżej wpisz przewidywane lub już uzyskane wyniki oraz oceny i
+              sprawdź jakie szkoły są w Twoim zasięgu.
+            </Text>
+          </Flex>
+
+          <Image
+            src={DostanesieLogoQuestionMark}
+            alt="Logo dostanesie"
+            w="32px"
+            objectFit="contain"
+            alignSelf="flex-start"
+          />
         </Flex>
 
-        <Flex flexWrap="wrap" gap={6}>
+        <Flex flexWrap="wrap" gap={8}>
           <FieldsSection>
             <ExamFields />
           </FieldsSection>
@@ -39,10 +54,6 @@ export const CalculatorForm = () => {
           <FieldsSection>
             <CertificateFields />
           </FieldsSection>
-        </Flex>
-
-        <Flex px={4}>
-          <ExtraPoints />
         </Flex>
 
         <Flex px={4}>

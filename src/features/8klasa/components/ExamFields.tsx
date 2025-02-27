@@ -8,7 +8,7 @@ import Subjects from "@/assets/fetched/subjects.json";
 
 export const ExamFields = () => {
   return (
-    <Flex flexDirection="column" alignItems="center" w="100%">
+    <Flex flexDirection="column" alignItems="center" w="100%" gap={4}>
       <Text fontSize="xl" fontWeight="bold">
         Egzamin ósmoklasisty
       </Text>
@@ -17,7 +17,7 @@ export const ExamFields = () => {
         flexDirection="column"
         h="100%"
         justifyContent="space-evenly"
-        gap={5}
+        gap={2}
         w="100%"
       >
         <ExamSubjectField title="język polski" fieldPath="exams.pl" />
@@ -25,7 +25,7 @@ export const ExamFields = () => {
 
         <ExamSubjectField
           title={
-            <NativeSelectRoot>
+            <NativeSelectRoot width="fit-content">
               <NativeSelectField>
                 {Subjects.filter((s) => s.is_foreign).map((subject) => (
                   <option key={subject.full_name} value={subject.full_name}>

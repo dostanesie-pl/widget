@@ -1,16 +1,14 @@
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { FormValues } from "@/features/8klasa/types/calculator";
-import { Flex, Grid, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import {
   NativeSelectField,
   NativeSelectRoot,
 } from "@/components/ui/native-select";
-import {
-  NumberInputField,
-  NumberInputRoot,
-} from "@/components/ui/number-input";
 import { Field } from "@/components/ui/field";
 import Subjects from "@/assets/fetched/subjects.json";
+import { StepperInput } from "@/components/ui/stepper-input";
+import { ExtraPoints } from "@/features/8klasa/components/ExtraPoints";
 
 export const CertificateFields = () => {
   const {
@@ -26,32 +24,26 @@ export const CertificateFields = () => {
   });
 
   return (
-    <Flex flexDirection="column" alignItems="center">
+    <Flex flexDirection="column" alignItems="center" gap={4}>
       <Text fontSize="xl" fontWeight="bold">
         Świadectwo
       </Text>
 
-      <Flex
-        flexDirection="column"
-        h="100%"
-        justifyContent="space-evenly"
-        gap={1}
-      >
+      <Flex flexWrap="wrap" h="100%" justifyContent="center" gap={4}>
         {certificateFields.map((field, index) => (
-          <Flex key={index} flexDirection="column">
-            <Grid templateColumns="2fr 1fr" gap={3} alignItems="center">
+          <Flex key={index} flexDirection="column" w="45%">
+            <Flex flexDirection="column" gap={2} fontWeight={600}>
               {field.editable ? (
-                <NativeSelectRoot width="auto">
+                <NativeSelectRoot width="auto" size="sm">
                   <NativeSelectField
                     {...register(`certificate.subjects.${index}.name`)}
                     value={
                       getValues(`certificate.subjects.${index}.name`) || ""
                     }
                   >
-                    <option value="">wybierz przedmiot</option>
                     {Subjects.map((subject) => (
                       <option key={subject.full_name} value={subject.full_name}>
-                        {subject.full_name}
+                        {subject.abbreviation || subject.full_name}
                       </option>
                     ))}
                   </NativeSelectField>
@@ -69,27 +61,25 @@ export const CertificateFields = () => {
                     max: 6,
                   }}
                   render={({ field }) => (
-                    <NumberInputRoot
+                    <StepperInput
                       name={field.name}
-                      value={field.value || undefined}
+                      value={(field.value || 0).toString()}
                       onValueChange={({ value }) => {
                         field.onChange(value);
                       }}
-                    >
-                      <NumberInputField onBlur={field.onBlur} />
-                    </NumberInputRoot>
+                      min={1}
+                      max={6}
+                      colorPalette="yellow"
+                    />
                   )}
                 />
               </Field>
-            </Grid>
-
-            <Text fontSize="sm" color="red.500" h={3}>
-              {errors.certificate?.subjects?.[index]?.score &&
-                "Ocena musi być z przedziału 1-6"}
-            </Text>
+            </Flex>
           </Flex>
         ))}
       </Flex>
+
+      <ExtraPoints />
     </Flex>
   );
 };
