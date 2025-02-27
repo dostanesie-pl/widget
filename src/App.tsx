@@ -23,7 +23,7 @@ const App = () => {
   return (
     <ChakraProvider>
       <FormProvider {...form}>
-        <Box position="relative">
+        <Box position="relative" maxW="830px">
           <Presence
             present={visiblePage === "calculator"}
             animationName={{ _open: "fade-in", _closed: "fade-out" }}
