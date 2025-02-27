@@ -21,6 +21,9 @@ const config = defineConfig({
         body: { value: "Montserrat Variable" },
       },
       colors: {
+        brand: {
+          100: { value: "#DF2A66" },
+        },
         yellowCustom: {
           ...defaultConfig.theme?.tokens?.colors?.yellow,
           100: { value: "#FFD90C" },
