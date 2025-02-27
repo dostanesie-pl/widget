@@ -1,6 +1,6 @@
-import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react"
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
-const varRoot = ":host"
+const varRoot = ":host";
 
 const config = defineConfig({
   cssVarsRoot: varRoot,
@@ -11,6 +11,14 @@ const config = defineConfig({
   globalCss: {
     [varRoot]: defaultConfig.globalCss?.html ?? {},
   },
-})
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: '"Montserrat", sans-serif' },
+        body: { value: '"Montserrat", sans-serif' },
+      },
+    },
+  },
+});
 
-export const system = createSystem(defaultConfig, config)
+export const system = createSystem(defaultConfig, config);
