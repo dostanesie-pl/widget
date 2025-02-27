@@ -6,7 +6,7 @@ import {
 import { ExtraPoints } from "@/features/8klasa/components/ExtraPoints";
 import { SubjectDegreeField } from "@/features/8klasa/components/SubjectDegreeField";
 import { FormValues } from "@/features/8klasa/types/calculator";
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Separator, Text } from "@chakra-ui/react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 export const CertificateFields = () => {
@@ -54,7 +54,10 @@ export const CertificateFields = () => {
         ))}
       </Flex>
 
+      <Separator borderColor="yellowCustom.100" size="md" w="100%" />
+
       <ExtraPoints />
+      <Separator borderColor="yellowCustom.100" size="md" w="100%" />
     </Flex>
   );
 };

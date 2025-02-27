@@ -45,17 +45,17 @@ export const CalculatorForm = () => {
           />
         </Flex>
 
-        <Flex flexWrap="wrap" gap={8}>
-          <FieldsSection>
-            <ExamFields />
-          </FieldsSection>
+        <Flex flexDirection="column" gap={4}>
+          <Flex flexWrap="wrap" gap={8}>
+            <FieldsSection>
+              <ExamFields />
+            </FieldsSection>
 
-          <FieldsSection>
-            <CertificateFields />
-          </FieldsSection>
-        </Flex>
+            <FieldsSection>
+              <CertificateFields />
+            </FieldsSection>
+          </Flex>
 
-        <Flex px={4}>
           <ContestsFields />
         </Flex>
 

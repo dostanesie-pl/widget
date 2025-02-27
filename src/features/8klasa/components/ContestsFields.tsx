@@ -14,10 +14,12 @@ export const ContestsFields = () => {
   const { setValue } = useFormContext<FormValues>();
 
   return (
-    <Flex flexDirection="column" paddingY={4} w="100%">
+    <Flex flexDirection="column" w="100%">
       <AccordionRoot collapsible>
-        <AccordionItem value="">
-          <AccordionItemTrigger>Konkursy</AccordionItemTrigger>
+        <AccordionItem value="" borderColor="yellowCustom.100">
+          <AccordionItemTrigger fontWeight={700} fontSize="xl">
+            Konkursy
+          </AccordionItemTrigger>
           <AccordionItemContent>
             <Flex flexDirection="column" gap={5}>
               {contestsValues.map((contest, index) => (
