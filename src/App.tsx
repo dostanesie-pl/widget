@@ -1,8 +1,7 @@
 import { Provider as ChakraProvider } from "@/components/ui/provider";
 import { CalculatorForm } from "@/features/8klasa/components/CalculatorForm";
 import { Badge } from "@chakra-ui/react";
-
-import "./fonts.css";
+import "@fontsource-variable/montserrat/index.css";
 
 const App = () => {
   return (

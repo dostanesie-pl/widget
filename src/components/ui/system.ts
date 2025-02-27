@@ -9,13 +9,16 @@ const config = defineConfig({
   },
   preflight: { scope: varRoot },
   globalCss: {
-    [varRoot]: defaultConfig.globalCss?.html ?? {},
+    [varRoot]: {
+      ...defaultConfig.globalCss?.html,
+      fontFamily: "Montserrat Variable",
+    },
   },
   theme: {
     tokens: {
       fonts: {
-        heading: { value: '"Montserrat", sans-serif' },
-        body: { value: '"Montserrat", sans-serif' },
+        heading: { value: "Montserrat Variable" },
+        body: { value: "Montserrat Variable" },
       },
     },
   },
