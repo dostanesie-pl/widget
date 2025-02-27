@@ -32,6 +32,7 @@ const libConfig: UserConfig = {
       fileName: (format) => `dostanesie-pl-widget.${format}.js`,
       formats: ["iife"],
     },
+    cssCodeSplit: true,
   },
 };
 
