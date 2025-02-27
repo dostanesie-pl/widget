@@ -1,6 +1,6 @@
 import { StepperInput } from "@/components/ui/stepper-input";
-import { Controller, FieldPath, useFormContext } from "react-hook-form";
 import { FormValues } from "@/features/8klasa/types/calculator";
+import { Controller, FieldPath, useFormContext } from "react-hook-form";
 
 export const SubjectDegreeField = ({
   fieldName,

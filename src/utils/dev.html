@@ -1,32 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>dostanesie.pl - dev widget page</title>
 
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="dev-widget"></div>
 
-<div id="dev-widget"></div>
+    <script type="module" src="/src/main.ts"></script>
 
-<script type="module" src="/src/main.ts"></script>
-
-<script>
-    window.addEventListener('load', () => {
-        const containerMobile = document.getElementById('dev-widget');
+    <script>
+      window.addEventListener("load", () => {
+        const containerMobile = document.getElementById("dev-widget");
         if (containerMobile) {
-            window.initDstplWidget?.(containerMobile, {});
+          window.initDstplWidget?.(containerMobile, {});
         }
-    });
-</script>
-
-</body>
+      });
+    </script>
+  </body>
 </html>

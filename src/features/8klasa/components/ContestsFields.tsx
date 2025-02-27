@@ -1,17 +1,17 @@
-import { Flex, Text } from "@chakra-ui/react";
 import {
   AccordionItem,
   AccordionItemContent,
   AccordionItemTrigger,
   AccordionRoot,
 } from "@/components/ui/accordion";
-import { contestsValues } from "@/features/8klasa/consts/contestsValues";
 import { Radio, RadioGroup } from "@/components/ui/radio";
-import { useFormContext } from "react-hook-form";
+import { contestsValues } from "@/features/8klasa/consts/contestsValues";
 import { FormValues } from "@/features/8klasa/types/calculator";
+import { Flex, Text } from "@chakra-ui/react";
+import { useFormContext } from "react-hook-form";
 
 export const ContestsFields = () => {
-  const { setValue, watch } = useFormContext<FormValues>();
+  const { setValue } = useFormContext<FormValues>();
 
   return (
     <Flex flexDirection="column" paddingY={4} w="100%">

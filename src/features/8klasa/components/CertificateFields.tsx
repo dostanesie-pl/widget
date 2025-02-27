@@ -1,13 +1,13 @@
-import { useFieldArray, useFormContext } from "react-hook-form";
-import { FormValues } from "@/features/8klasa/types/calculator";
-import { Flex, Text } from "@chakra-ui/react";
+import Subjects from "@/assets/fetched/subjects.json";
 import {
   NativeSelectField,
   NativeSelectRoot,
 } from "@/components/ui/native-select";
-import Subjects from "@/assets/fetched/subjects.json";
 import { ExtraPoints } from "@/features/8klasa/components/ExtraPoints";
 import { SubjectDegreeField } from "@/features/8klasa/components/SubjectDegreeField";
+import { FormValues } from "@/features/8klasa/types/calculator";
+import { Flex, Text } from "@chakra-ui/react";
+import { useFieldArray, useFormContext } from "react-hook-form";
 
 export const CertificateFields = () => {
   const { control, getValues, register } = useFormContext<FormValues>();

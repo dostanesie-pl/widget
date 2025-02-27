@@ -1,10 +1,10 @@
-import { Flex, Text } from "@chakra-ui/react";
-import { ExamSubjectField } from "@/features/8klasa/components/ExamSubjectField";
+import Subjects from "@/assets/fetched/subjects.json";
 import {
   NativeSelectField,
   NativeSelectRoot,
 } from "@/components/ui/native-select";
-import Subjects from "@/assets/fetched/subjects.json";
+import { ExamSubjectField } from "@/features/8klasa/components/ExamSubjectField";
+import { Flex, Text } from "@chakra-ui/react";
 
 export const ExamFields = () => {
   return (

@@ -1,15 +1,14 @@
-import { FormProvider, useForm } from "react-hook-form";
-import { Flex, Heading, Image, Text } from "@chakra-ui/react";
-import { FieldsSection } from "@/features/8klasa/components/FieldsSection";
-import { ExamFields } from "@/features/8klasa/components/ExamFields";
-import { CertificateFields } from "@/features/8klasa/components/CertificateFields";
-import { UserScore } from "@/features/8klasa/components/UserScore";
 import DostanesieLogo from "@/assets/dostanesieLogo.svg";
 import DostanesieLogoQuestionMark from "@/assets/dostanesieLogoQuestionMark.svg";
-import { FormValues } from "@/features/8klasa/types/calculator";
-import { defaultFormValues } from "@/features/8klasa/consts/defaultFormValues";
-import { ExtraPoints } from "@/features/8klasa/components/ExtraPoints";
+import { CertificateFields } from "@/features/8klasa/components/CertificateFields";
 import { ContestsFields } from "@/features/8klasa/components/ContestsFields";
+import { ExamFields } from "@/features/8klasa/components/ExamFields";
+import { FieldsSection } from "@/features/8klasa/components/FieldsSection";
+import { UserScore } from "@/features/8klasa/components/UserScore";
+import { defaultFormValues } from "@/features/8klasa/consts/defaultFormValues";
+import { FormValues } from "@/features/8klasa/types/calculator";
+import { Flex, Heading, Image, Text } from "@chakra-ui/react";
+import { FormProvider, useForm } from "react-hook-form";
 
 export const CalculatorForm = () => {
   const form = useForm<FormValues>({

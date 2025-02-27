@@ -1,9 +1,12 @@
-import { render, h } from 'preact';
-import App from './App';
+import { h, render } from "preact";
+import App from "./App";
 
 declare global {
   interface Window {
-    initDstplWidget?: (container: HTMLElement, props?: Record<string, unknown>) => void;
+    initDstplWidget?: (
+      container: HTMLElement,
+      props?: Record<string, unknown>,
+    ) => void;
   }
 }
 

@@ -3,7 +3,7 @@ import { FormValues } from "@/features/8klasa/types/calculator";
 import {
   degreeExemptMathAndPolishMapping,
   degreeExemptOtherSubjectMapping,
-  degreePointsMap
+  degreePointsMap,
 } from "@/features/8klasa/consts/mappings";
 
 export const calculateResult = (values: FormValues): number => {
@@ -30,7 +30,9 @@ export const calculateResult = (values: FormValues): number => {
   if (!values.examLanguage.exempt && values.examLanguage.score) {
     sum = sum + parseInt(values.examLanguage.score) * 0.3;
   } else if (values.examLanguage.exempt && values.examLanguage.degree) {
-    sum = sum + degreeExemptOtherSubjectMapping[parseInt(values.examLanguage.degree)];
+    sum =
+      sum +
+      degreeExemptOtherSubjectMapping[parseInt(values.examLanguage.degree)];
   }
 
   let contestsSum = 0;

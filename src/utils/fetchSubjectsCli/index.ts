@@ -1,7 +1,7 @@
-import wretch from "wretch";
-import QueryStringAddon from "wretch/addons/queryString";
 import { IApiSubject, ISubject } from "@/utils/fetchSubjectsCli/types";
 import { writeFileSync } from "fs";
+import wretch from "wretch";
+import QueryStringAddon from "wretch/addons/queryString";
 
 const getAbbreviation = (subject: IApiSubject): ISubject["abbreviation"] => {
   switch (subject.name) {

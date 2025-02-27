@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import { Flex } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
 export const FieldsSection = ({ children }: { children: ReactNode }) => (
   <Flex

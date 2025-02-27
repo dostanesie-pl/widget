@@ -1,3 +1,13 @@
+import { CheckboxInvertedLabel } from "@/components/ui/checkboxInvertedLabel";
+import { Field } from "@/components/ui/field";
+import {
+  NumberInputField,
+  NumberInputRoot,
+} from "@/components/ui/number-input";
+import { SubjectDegreeField } from "@/features/8klasa/components/SubjectDegreeField";
+import { FormValues } from "@/features/8klasa/types/calculator";
+import { Flex, Text } from "@chakra-ui/react";
+import { ReactNode } from "react";
 import {
   Controller,
   FieldPath,
@@ -5,16 +15,6 @@ import {
   useFormContext,
   useWatch,
 } from "react-hook-form";
-import { FormValues } from "@/features/8klasa/types/calculator";
-import { Flex, Text } from "@chakra-ui/react";
-import { Field } from "@/components/ui/field";
-import {
-  NumberInputField,
-  NumberInputRoot,
-} from "@/components/ui/number-input";
-import { ReactNode } from "react";
-import { CheckboxInvertedLabel } from "@/components/ui/checkboxInvertedLabel";
-import { SubjectDegreeField } from "@/features/8klasa/components/SubjectDegreeField";
 
 export const ExamSubjectField = ({
   title,

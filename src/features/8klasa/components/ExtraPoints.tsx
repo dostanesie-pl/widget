@@ -1,10 +1,10 @@
-import { useFormContext } from "react-hook-form";
+import { Checkbox } from "@/components/ui/checkbox";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { Flex } from "@chakra-ui/react";
-import { Checkbox } from "@/components/ui/checkbox";
+import { useFormContext } from "react-hook-form";
 
 export const ExtraPoints = () => {
-  const {register} = useFormContext<FormValues>()
+  const { register } = useFormContext<FormValues>();
 
   return (
     <Flex flexDirection="column" gap={2} w="100%">
@@ -16,5 +16,5 @@ export const ExtraPoints = () => {
         świadectwo z wyróżnieniem <b>+7 pkt</b>
       </Checkbox>
     </Flex>
-  )
-}
+  );
+};
