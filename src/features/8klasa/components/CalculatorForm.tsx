@@ -1,10 +1,9 @@
-import DostanesieLogo from "@/assets/dostanesieLogo.svg";
 import DostanesieLogoQuestionMark from "@/assets/dostanesieLogoQuestionMark.svg";
 import { CertificateFields } from "@/features/8klasa/components/CertificateFields";
 import { ContestsFields } from "@/features/8klasa/components/ContestsFields";
 import { ExamFields } from "@/features/8klasa/components/ExamFields";
 import { FieldsSection } from "@/features/8klasa/components/FieldsSection";
-import { UserScore } from "@/features/8klasa/components/UserScore";
+import { Footer } from "@/features/8klasa/components/Footer";
 import { defaultFormValues } from "@/features/8klasa/consts/defaultFormValues";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { Flex, Heading, Image, Text } from "@chakra-ui/react";
@@ -59,19 +58,7 @@ export const CalculatorForm = () => {
           <ContestsFields />
         </Flex>
 
-        <Flex
-          px={2}
-          py={0.5}
-          borderTop="1px solid"
-          borderTopColor="gray.300"
-          gap={2}
-          justifyContent="space-between"
-          alignItems="flex-end"
-        >
-          <UserScore />
-
-          <Image src={DostanesieLogo} h={10} />
-        </Flex>
+        <Footer />
       </Flex>
     </FormProvider>
   );
