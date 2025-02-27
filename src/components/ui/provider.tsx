@@ -35,7 +35,7 @@ export function Provider(
         <EnvironmentProvider value={() => shadow.shadowRoot ?? document}>
           <CacheProvider value={cache}>
             <ChakraProvider value={system}>
-              <ThemeProvider {...props} />
+              <ThemeProvider {...props} forcedTheme="light" />
             </ChakraProvider>
           </CacheProvider>
         </EnvironmentProvider>
