@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/number-input";
 import { ReactNode } from "react";
 import { CheckboxInvertedLabel } from "@/components/ui/checkboxInvertedLabel";
+import { SubjectDegreeField } from "@/features/8klasa/components/SubjectDegreeField";
 
 export const ExamSubjectField = ({
   title,
@@ -39,34 +40,15 @@ export const ExamSubjectField = ({
   });
 
   return (
-    <Flex flexDirection="column" gap={2}>
+    <Flex flexDirection="column" gap={1}>
       <Flex justifyContent="space-between" w="100%" gap={2} fontWeight={600}>
         {typeof title === "string" ? <Text>{title}</Text> : title}
       </Flex>
 
-      <Flex gap={5}>
+      <Flex gap={5} alignItems="center">
         {isExempt ? (
           <Field invalid={!!degreeError} key="degree">
-            <Controller
-              name={`${fieldPath}.degree`}
-              control={control}
-              rules={{
-                min: 1,
-                max: 6,
-              }}
-              render={({ field }) => (
-                <NumberInputRoot
-                  name={field.name}
-                  value={field.value || undefined}
-                  onValueChange={({ value }) => {
-                    field.onChange(value);
-                  }}
-                  w="100%"
-                >
-                  <NumberInputField onBlur={field.onBlur} placeholder="ocena" />
-                </NumberInputRoot>
-              )}
-            />
+            <SubjectDegreeField fieldName={`${fieldPath}.degree`} />
           </Field>
         ) : (
           <Field invalid={!!scoreError} key="score">

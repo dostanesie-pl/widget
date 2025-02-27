@@ -1,22 +1,16 @@
-import { Controller, useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { Flex, Text } from "@chakra-ui/react";
 import {
   NativeSelectField,
   NativeSelectRoot,
 } from "@/components/ui/native-select";
-import { Field } from "@/components/ui/field";
 import Subjects from "@/assets/fetched/subjects.json";
-import { StepperInput } from "@/components/ui/stepper-input";
 import { ExtraPoints } from "@/features/8klasa/components/ExtraPoints";
+import { SubjectDegreeField } from "@/features/8klasa/components/SubjectDegreeField";
 
 export const CertificateFields = () => {
-  const {
-    control,
-    getValues,
-    register,
-    formState: { errors },
-  } = useFormContext<FormValues>();
+  const { control, getValues, register } = useFormContext<FormValues>();
 
   const { fields: certificateFields } = useFieldArray({
     control: control,
@@ -31,7 +25,7 @@ export const CertificateFields = () => {
 
       <Flex flexWrap="wrap" h="100%" justifyContent="center" gap={4}>
         {certificateFields.map((field, index) => (
-          <Flex key={index} flexDirection="column" w="45%">
+          <Flex key={index} flexDirection="column" flex="1 1">
             <Flex flexDirection="column" gap={2} fontWeight={600}>
               {field.editable ? (
                 <NativeSelectRoot width="auto" size="sm">
@@ -52,28 +46,9 @@ export const CertificateFields = () => {
                 <Text>{field.name}</Text>
               )}
 
-              <Field invalid={!!errors.certificate?.subjects?.[index]?.score}>
-                <Controller
-                  name={`certificate.subjects.${index}.score`}
-                  control={control}
-                  rules={{
-                    min: 1,
-                    max: 6,
-                  }}
-                  render={({ field }) => (
-                    <StepperInput
-                      name={field.name}
-                      value={(field.value || 0).toString()}
-                      onValueChange={({ value }) => {
-                        field.onChange(value);
-                      }}
-                      min={1}
-                      max={6}
-                      colorPalette="yellow"
-                    />
-                  )}
-                />
-              </Field>
+              <SubjectDegreeField
+                fieldName={`certificate.subjects.${index}.score`}
+              />
             </Flex>
           </Flex>
         ))}

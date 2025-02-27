@@ -7,7 +7,7 @@ export const ExtraPoints = () => {
   const {register} = useFormContext<FormValues>()
 
   return (
-    <Flex flexDirection="column" gap={2}>
+    <Flex flexDirection="column" gap={2} w="100%">
       <Checkbox {...register("volunteer")}>
         wolontariat <b>+3 pkt</b>
       </Checkbox>

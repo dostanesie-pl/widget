@@ -17,7 +17,7 @@ export const ExamFields = () => {
         flexDirection="column"
         h="100%"
         justifyContent="space-evenly"
-        gap={2}
+        gap={4}
         w="100%"
       >
         <ExamSubjectField title="język polski" fieldPath="exams.pl" />
