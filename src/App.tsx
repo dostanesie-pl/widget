@@ -33,7 +33,7 @@ const App = (config: IWidgetConfig) => {
   return (
     <ChakraProvider>
       <FormProvider {...form}>
-        <Box position="relative" maxW="830px">
+        <Box position="relative" maxW="675px" mx="auto">
           <Presence
             present={visiblePage === "calculator"}
             animationName={{ _open: "fade-in", _closed: "fade-out" }}
