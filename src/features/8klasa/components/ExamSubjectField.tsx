@@ -55,6 +55,7 @@ export const ExamSubjectField = ({
             <Controller
               name={`${fieldPath}.score`}
               control={control}
+              shouldUnregister
               rules={{
                 min: 0,
                 max: 100,

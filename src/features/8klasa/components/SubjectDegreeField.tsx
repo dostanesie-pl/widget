@@ -13,6 +13,7 @@ export const SubjectDegreeField = ({
     <Controller
       name={fieldName}
       control={control}
+      shouldUnregister
       rules={{
         min: 1,
         max: 6,
