@@ -5,8 +5,9 @@ import { defaultFormValues } from "@/features/8klasa/consts/defaultFormValues";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { Box, Presence } from "@chakra-ui/react";
 import "@fontsource-variable/montserrat/index.css";
-import { useState } from "preact/hooks";
+
 import { FormProvider, useForm } from "react-hook-form";
+import { useState } from "react";
 
 const ANIMATION_DURATION_MS = 200;
 

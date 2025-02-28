@@ -1,23 +1,18 @@
-import { defineConfig, UserConfig } from "vite";
-import preact from "@preact/preset-vite";
-import tsconfigPaths from "vite-tsconfig-paths";
+import react from "@vitejs/plugin-react";
 import { resolve } from "path";
+import { defineConfig, UserConfig } from "vite";
 import svgLoader from "vite-svg-loader";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // Shared configuration
 const sharedConfig: UserConfig = {
   plugins: [
     tsconfigPaths(),
-    preact(),
+    react(),
     svgLoader({
       defaultImport: "url",
     }),
   ],
-  define: {
-    // need to override NODE_ENV,
-    // otherwise react-is throws reference error in prod build
-    "process.env.NODE_ENV": JSON.stringify("production"),
-  },
 };
 
 // Library build configuration
@@ -27,10 +22,10 @@ const libConfig: UserConfig = {
     minify: true,
     sourcemap: true,
     lib: {
-      entry: "src/main.ts",
+      entry: "src/main.tsx",
       name: "DostanesiePlWidget",
       fileName: (format) => `dostanesie-pl-widget.${format}.js`,
-      formats: ["iife"],
+      formats: ["iife", "umd"],
     },
     cssCodeSplit: true,
   },
