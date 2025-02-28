@@ -15,6 +15,7 @@ export const CalculatorWrapper = ({
     p={4}
     rounded="xl"
     shadow="0px 4px 4px 0px #00000040"
+    gap={6}
   >
     <Flex w="100%" justifyContent="space-between">
       <Flex flexDir="column">

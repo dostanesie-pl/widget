@@ -19,7 +19,11 @@ export const CertificateFields = () => {
 
   return (
     <Flex flexDirection="column" alignItems="center" gap={4}>
-      <Text fontSize="xl" fontWeight="bold">
+      <Text
+        fontSize="xl"
+        fontWeight="bold"
+        alignSelf={["center", "flex-start"]}
+      >
         Świadectwo
       </Text>
 
@@ -54,10 +58,10 @@ export const CertificateFields = () => {
         ))}
       </Flex>
 
-      <Separator borderColor="yellowCustom.100" size="md" w="100%" />
+      <Separator borderColor="yellowCustom.100" size="sm" w="100%" />
 
       <ExtraPoints />
-      <Separator borderColor="yellowCustom.100" size="md" w="100%" />
+      <Separator borderColor="yellowCustom.100" size="sm" w="100%" />
     </Flex>
   );
 };

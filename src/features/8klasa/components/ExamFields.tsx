@@ -9,7 +9,11 @@ import { Flex, Text } from "@chakra-ui/react";
 export const ExamFields = () => {
   return (
     <Flex flexDirection="column" alignItems="center" w="100%" gap={4}>
-      <Text fontSize="xl" fontWeight="bold">
+      <Text
+        fontSize="xl"
+        fontWeight="bold"
+        alignSelf={["center", "flex-start"]}
+      >
         Egzamin ósmoklasisty
       </Text>
 
@@ -20,7 +24,7 @@ export const ExamFields = () => {
         gap={4}
         w="100%"
       >
-        <ExamSubjectField title="język polski" fieldPath="exams.pl" />
+        <ExamSubjectField title="j. polski" fieldPath="exams.pl" />
         <ExamSubjectField title="matematyka" fieldPath="exams.math" />
 
         <ExamSubjectField

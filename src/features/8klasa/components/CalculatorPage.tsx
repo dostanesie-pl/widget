@@ -28,8 +28,8 @@ export const CalculatorPage = ({
       }
     >
       <Flex flexDir="column" gap={8}>
-        <Flex flexDirection="column" gap={4}>
-          <Flex flexWrap="wrap" gap={8}>
+        <Flex flexDirection="column" gap={6}>
+          <Flex flexWrap="wrap" gap={16} justifyContent="space-between">
             <FieldsSection>
               <ExamFields />
             </FieldsSection>
