@@ -6,12 +6,21 @@ import { FormValues } from "@/features/8klasa/types/calculator";
 import { Box, Presence } from "@chakra-ui/react";
 import "@fontsource-variable/montserrat/index.css";
 
-import { useState } from "react";
+import { IWidgetConfig } from "@/features/config/types/IWidgetConfig";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 const ANIMATION_DURATION_MS = 200;
 
-const App = () => {
+const App = (config: IWidgetConfig) => {
+  useEffect(() => {
+    // Initialized dostanesie.pl widget with config:
+    console.info(
+      "Załadowano widget dostanesie.pl. Konfiguracja:",
+      JSON.stringify(config),
+    );
+  }, []);
+
   const [visiblePage, setVisiblePage] = useState<"calculator" | "results">(
     "calculator",
   );

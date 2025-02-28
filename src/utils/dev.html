@@ -15,17 +15,8 @@
     </style>
   </head>
   <body>
-    <div id="dev-widget"></div>
+    <div id="dostanesie-pl-widget" data-rspo="1"></div>
 
     <script type="module" src="/src/main.tsx"></script>
-
-    <script>
-      window.addEventListener("load", () => {
-        const containerMobile = document.getElementById("dev-widget");
-        if (containerMobile) {
-          window.initDstplWidget?.(containerMobile, {});
-        }
-      });
-    </script>
   </body>
 </html>

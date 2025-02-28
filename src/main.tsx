@@ -1,20 +1,14 @@
+import { extractConfigFromContainer } from "@/features/config/utils/extractConfigFromContainer";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 
-declare global {
-  interface Window {
-    initDstplWidget?: (
-      container: HTMLElement,
-      props?: Record<string, unknown>,
-    ) => void;
-  }
-}
+window.addEventListener("load", () => {
+  const container = document.getElementById("dostanesie-pl-widget");
 
-window.initDstplWidget = (container, props = {}) => {
-  if (!container) {
-    throw new Error("Container element is required for rendering the widget.");
-  }
+  if (container) {
+    const config = extractConfigFromContainer(container);
 
-  const root = createRoot(container); // Create a root for React rendering
-  root.render(<App {...props} />); // Render the React App with the provided props
-};
+    const root = createRoot(container);
+    root.render(<App {...config} />);
+  }
+});
