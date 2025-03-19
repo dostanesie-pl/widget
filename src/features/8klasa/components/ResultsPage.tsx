@@ -1,31 +1,31 @@
 import DostanesieLogo from "@/assets/dostanesieLogo.svg";
 import { Button } from "@/components/ui/button";
-import { CalculatorWrapper } from "@/features/8klasa/components/CalculatorWrapper";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { calculateResult } from "@/features/8klasa/utils/calculateResult";
 import { Flex, Heading, Image, Span, Text } from "@chakra-ui/react";
+import { Ref } from "react";
 import { useWatch } from "react-hook-form";
 import { LuChevronLeft } from "react-icons/lu";
 
 export const ResultsPage = ({
   goToCalculator,
+  resultsBodyRef,
 }: {
   goToCalculator: () => void;
+  resultsBodyRef: Ref<HTMLDivElement>;
 }) => {
   const state = useWatch<FormValues>();
   let result = calculateResult(state as FormValues);
 
   return (
-    <CalculatorWrapper
-      subtitle={
-        <Flex mt={4}>
-          <Button size="sm" variant="subtle" onClick={goToCalculator}>
-            <LuChevronLeft /> Wróć
-          </Button>
-        </Flex>
-      }
-    >
-      <Flex w="100%" justifyContent="center">
+    <Flex flexDirection="column" minW="100%" px={4}>
+      <Flex mt={4}>
+        <Button size="sm" variant="subtle" onClick={goToCalculator}>
+          <LuChevronLeft /> Wróć
+        </Button>
+      </Flex>
+
+      <Flex w="100%" justifyContent="center" ref={resultsBodyRef}>
         <Flex flexDirection="column" gap={8} alignItems="center">
           <Heading
             textAlign="center"
@@ -70,6 +70,6 @@ export const ResultsPage = ({
           </Flex>
         </Flex>
       </Flex>
-    </CalculatorWrapper>
+    </Flex>
   );
 };
