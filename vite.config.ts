@@ -29,6 +29,9 @@ const libConfig: UserConfig = {
     },
     cssCodeSplit: true,
   },
+  define: {
+    "process.env.NODE_ENV": JSON.stringify("production"),
+  },
 };
 
 // Static page build configuration
