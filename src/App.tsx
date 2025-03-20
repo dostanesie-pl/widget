@@ -16,7 +16,8 @@ import "./animationProperty.css";
 const App = (config: IWidgetConfig) => {
   useEffect(() => {
     console.info(
-      "Załadowano widget dostanesie.pl. Konfiguracja:",
+      `Załadowano widget dostanesie.pl w wersji ${import.meta.env.VITE_WIDGET_VERSION}.`,
+      "Konfiguracja:",
       JSON.stringify(config),
     );
   }, []);

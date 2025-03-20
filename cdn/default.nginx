@@ -1,0 +1,64 @@
+user  nginx;
+worker_processes  auto;
+
+error_log  /var/log/nginx/error.log notice;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  65536;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format json_logger escape=json '{'
+        '"time_iso8601": "$time_iso8601",'
+        '"http_x_forwarded_for": "$http_x_forwarded_for",'
+        '"method": "$request_method",'
+        '"request_uri": "$request_uri",'
+        '"status": "$status",'
+        '"body_bytes_sent": "$body_bytes_sent",'
+        '"http_referer": "$http_referer",'
+        '"gzip_ratio": "$gzip_ratio",'
+    '}';
+
+    access_log  /var/log/nginx/access.log  json_logger;
+
+    sendfile on;
+    keepalive_timeout 65;
+
+    open_file_cache max=1000 inactive=20s;
+    open_file_cache_valid 5m;
+    open_file_cache_min_uses 2;
+    open_file_cache_errors on;
+
+    gzip on;
+    gzip_disable "msie6";
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_buffers 16 8k;
+    gzip_http_version 1.1;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+
+    server {
+        listen 80 default_server;
+        server_name _;
+
+        root /mnt/cdn;
+
+        location = /health {
+            default_type text/html;
+            access_log off;
+            return 200 "OK";
+        }
+
+        location / {
+            expires 5m;
+            add_header Cache-Control "public, max-age=300";
+        }
+    }
+}

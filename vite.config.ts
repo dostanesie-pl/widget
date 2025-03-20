@@ -24,8 +24,8 @@ const libConfig: UserConfig = {
     lib: {
       entry: "src/main.tsx",
       name: "DostanesiePlWidget",
-      fileName: (format) => `dostanesie-pl-widget.${format}.js`,
-      formats: ["iife", "umd"],
+      fileName: () => `dostanesie-pl-widget.js`,
+      formats: ["iife"],
     },
     cssCodeSplit: true,
   },
