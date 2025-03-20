@@ -5,9 +5,9 @@ import { Box, Flex, Heading, Image } from "@chakra-ui/react";
 import "@fontsource-variable/montserrat/index.css";
 
 import DostanesieLogoQuestionMark from "@/assets/dostanesieLogoQuestionMark.svg";
-import { CalculatorPage } from "@/features/8klasa/components/CalculatorPage";
 import { Footer } from "@/features/8klasa/components/Footer";
-import { ResultsPage } from "@/features/8klasa/components/ResultsPage";
+import { CalculatorView } from "@/features/8klasa/views/CalculatorView";
+import { ResultsView } from "@/features/8klasa/views/ResultsView";
 import { IWidgetConfig } from "@/features/config/types/IWidgetConfig";
 import { useEffect, useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -98,7 +98,7 @@ const App = (config: IWidgetConfig) => {
             transition={`transform ${config["disable-animations"] ? 0 : 0.15}s ease`}
             ref={wrapperRef}
           >
-            <CalculatorPage
+            <CalculatorView
               goToResults={() => {
                 setVisiblePage(1);
 
@@ -114,7 +114,7 @@ const App = (config: IWidgetConfig) => {
               calculatorBodyRef={calculatorBodyRef}
             />
 
-            <ResultsPage
+            <ResultsView
               goToCalculator={() => {
                 setVisiblePage(0);
 

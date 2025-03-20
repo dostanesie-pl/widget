@@ -7,7 +7,7 @@ import { Ref } from "react";
 import { useWatch } from "react-hook-form";
 import { LuChevronLeft } from "react-icons/lu";
 
-export const ResultsPage = ({
+export const ResultsView = ({
   goToCalculator,
   resultsBodyRef,
 }: {

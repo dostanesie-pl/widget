@@ -8,7 +8,7 @@ import { Flex, Text } from "@chakra-ui/react";
 import { Ref } from "react";
 import { useFormContext } from "react-hook-form";
 
-export const CalculatorPage = ({
+export const CalculatorView = ({
   goToResults,
   calculatorBodyRef,
 }: {
