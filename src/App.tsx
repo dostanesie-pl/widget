@@ -65,7 +65,13 @@ const App = (config: IWidgetConfig) => {
           rounded="xl"
           flexDir="column"
           gap={6}
-          animationName={visiblePage === 0 ? "calcToResults" : "resultsToCalc"}
+          animationName={
+            config["disable-animations"]
+              ? undefined
+              : visiblePage === 0
+                ? "calcToResults"
+                : "resultsToCalc"
+          }
           animationDuration="400ms"
           animationTimingFunction="ease"
           animationFillMode="forwards"
@@ -89,7 +95,7 @@ const App = (config: IWidgetConfig) => {
 
           <Flex
             transform={`translateX(-${visiblePage * 100}%)`}
-            transition="transform 0.15s ease"
+            transition={`transform ${config["disable-animations"] ? 0 : 0.15}s ease`}
             ref={wrapperRef}
           >
             <CalculatorPage

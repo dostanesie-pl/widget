@@ -6,7 +6,7 @@
 
 @property --border-orange-angle {
     syntax: '<angle>';
-    initial-value: -70deg;
+    initial-value: 0deg;
     inherits: false;
 }
 
