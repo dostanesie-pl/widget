@@ -1,0 +1,11 @@
+@property --border-angle {
+    syntax: '<angle>';
+    initial-value: 170deg;
+    inherits: false;
+}
+
+@property --border-center-x {
+    syntax: '<percentage>';
+    initial-value: 45%;
+    inherits: false;
+}

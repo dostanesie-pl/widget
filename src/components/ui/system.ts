@@ -44,6 +44,28 @@ const config = defineConfig({
         },
       },
     },
+    keyframes: {
+      calcToResults: {
+        from: {
+          "--border-angle": "90deg",
+          "--border-center-x": "65%",
+        },
+        to: {
+          "--border-angle": "170deg",
+          "--border-center-x": "45%",
+        },
+      },
+      resultsToCalc: {
+        from: {
+          "--border-angle": "170deg",
+          "--border-center-x": "45%",
+        },
+        to: {
+          "--border-angle": "90deg",
+          "--border-center-x": "65%",
+        },
+      },
+    },
   },
 });
 

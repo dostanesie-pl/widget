@@ -11,6 +11,7 @@ import { ResultsPage } from "@/features/8klasa/components/ResultsPage";
 import { IWidgetConfig } from "@/features/config/types/IWidgetConfig";
 import { useEffect, useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import "./animationProperty.css";
 
 const App = (config: IWidgetConfig) => {
   useEffect(() => {
@@ -21,7 +22,6 @@ const App = (config: IWidgetConfig) => {
   }, []);
 
   const [visiblePage, setVisiblePage] = useState<number>(0);
-  const [gradientDegrees, setGradientDegrees] = useState<number>(170);
 
   const form = useForm<FormValues>({
     defaultValues: defaultFormValues,
@@ -31,45 +31,6 @@ const App = (config: IWidgetConfig) => {
   const calculatorBodyRef = useRef<HTMLDivElement>(null);
   const resultsBodyRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number | null>(null);
-
-  // Function to animate the gradient angle
-  const animateGradient = (startDeg: number, targetDeg: number) => {
-    const startTime = Date.now();
-    const duration = 500; // Animation duration in ms
-
-    const animate = () => {
-      const currentTime = Date.now();
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-
-      // Easing function for smoother animation
-      const easeProgress = 1 - Math.pow(1 - progress, 2);
-
-      const currentDeg = startDeg + (targetDeg - startDeg) * easeProgress;
-      setGradientDegrees(currentDeg);
-
-      if (progress < 1) {
-        animationRef.current = requestAnimationFrame(animate);
-      }
-    };
-
-    // Cancel any existing animation
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current);
-    }
-
-    animationRef.current = requestAnimationFrame(animate);
-  };
-
-  // Clean up animation on unmount
-  useEffect(() => {
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, []);
 
   return (
     <ChakraProvider>
@@ -87,7 +48,7 @@ const App = (config: IWidgetConfig) => {
           backgroundImage={`
             linear-gradient(to bottom, white, white),
             conic-gradient(
-              from ${gradientDegrees}deg at 45% 60%,
+              from var(--border-angle) at var(--border-center-x) 60%,
                 transparent 1deg,
                 rgb(238, 66, 123) 3deg,
                 rgb(238, 66, 123) 50deg,
@@ -98,7 +59,10 @@ const App = (config: IWidgetConfig) => {
           rounded="xl"
           flexDir="column"
           gap={6}
-          transition="background-image 0.3s ease"
+          animationName={visiblePage === 0 ? "calcToResults" : "resultsToCalc"}
+          animationDuration="400ms"
+          animationTimingFunction="ease"
+          animationFillMode="forwards"
         >
           <Flex px={4} justifyContent="space-between" alignItems="center">
             <Heading fontSize="2xl">Kalkulator</Heading>
@@ -120,7 +84,6 @@ const App = (config: IWidgetConfig) => {
             <CalculatorPage
               goToResults={() => {
                 setVisiblePage(1);
-                animateGradient(170, 70);
 
                 if (
                   wrapperRef.current &&
@@ -137,7 +100,6 @@ const App = (config: IWidgetConfig) => {
             <ResultsPage
               goToCalculator={() => {
                 setVisiblePage(0);
-                animateGradient(70, 170);
 
                 if (
                   wrapperRef.current &&
