@@ -1,6 +1,12 @@
-@property --border-angle {
+@property --border-pink-angle {
     syntax: '<angle>';
     initial-value: 170deg;
+    inherits: false;
+}
+
+@property --border-orange-angle {
+    syntax: '<angle>';
+    initial-value: -70deg;
     inherits: false;
 }
 

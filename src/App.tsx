@@ -44,16 +44,22 @@ const App = (config: IWidgetConfig) => {
           border="solid transparent"
           borderWidth="9px"
           backgroundOrigin="border-box"
-          backgroundClip="padding-box, border-box"
+          backgroundClip="padding-box, border-box, border-box"
           backgroundImage={`
             linear-gradient(to bottom, white, white),
             conic-gradient(
-              from var(--border-angle) at var(--border-center-x) 60%,
+              from var(--border-pink-angle) at var(--border-center-x) 60%,
                 transparent 1deg,
                 rgb(238, 66, 123) 3deg,
-                rgb(238, 66, 123) 50deg,
                 rgb(238, 66, 123) 118deg,
                 transparent 120deg
+            ),
+            conic-gradient(
+              from var(--border-orange-angle) at var(--border-center-x) 60%,
+                transparent 1deg,
+                #EEA305 3deg,
+                #EEA305 50deg,
+                transparent 52deg
             )
           `}
           rounded="xl"
@@ -64,7 +70,12 @@ const App = (config: IWidgetConfig) => {
           animationTimingFunction="ease"
           animationFillMode="forwards"
         >
-          <Flex px={4} justifyContent="space-between" alignItems="center">
+          <Flex
+            px={4}
+            py={2}
+            justifyContent="space-between"
+            alignItems="center"
+          >
             <Heading fontSize="2xl">Kalkulator</Heading>
 
             <Image
