@@ -18,8 +18,8 @@ export const ResultsView = ({
   let result = calculateResult(state as FormValues);
 
   return (
-    <Flex flexDirection="column" minW="100%" px={4}>
-      <Flex mt={4}>
+    <Flex flexDirection="column" minW="100%" px={4} gap={4}>
+      <Flex>
         <Button size="sm" variant="subtle" onClick={goToCalculator}>
           <LuChevronLeft /> Wróć
         </Button>
