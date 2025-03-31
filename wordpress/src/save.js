@@ -1,12 +1,15 @@
 import { useBlockProps } from "@wordpress/block-editor";
 
 export default function Save({ attributes }) {
-  // Generate a random id string.
   const { blockId } = attributes;
 
   return (
     <div {...useBlockProps.save()}>
-      <div id={blockId}></div>
+      <div
+        id={blockId}
+        data-disable-animations={!attributes.enableAnimations}
+      />
+
       <script
         dangerouslySetInnerHTML={{
           __html: `

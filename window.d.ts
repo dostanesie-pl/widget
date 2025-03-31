@@ -1,3 +1,4 @@
 interface Window {
-  initDstplWidget?: (container: HTMLElement) => void;
+  loadDostanesiePlWidget?: (container: HTMLElement) => void;
+  unloadDostanesiePlWidget?: (container: HTMLElement) => void;
 }

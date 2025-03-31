@@ -32,8 +32,12 @@ registerBlockType(metadata.name, {
   icon: icon,
   attributes: {
     blockId: {
-      type: "string"
-    }
+      type: "string",
+    },
+    enableAnimations: {
+      type: "boolean",
+      default: true,
+    },
   },
   category: "widgets",
   title: metadata.title,

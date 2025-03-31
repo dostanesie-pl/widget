@@ -1,5 +1,5 @@
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
-import { PanelBody } from "@wordpress/components";
+import { PanelBody, ToggleControl } from "@wordpress/components";
 import { useEffect, useRef } from "react";
 
 // https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
@@ -15,18 +15,36 @@ export default function Edit({ attributes, setAttributes, clientId }) {
 
   useEffect(() => {
     if (containerRef.current) {
-      window.initDstplWidget?.(containerRef.current, {});
+      window.loadDostanesiePlWidget?.(containerRef.current);
     }
-  }, []);
+
+    return () => {
+      window.unloadDostanesiePlWidget?.(containerRef.current);
+    };
+  }, [attributes]);
 
   return (
     <>
       <InspectorControls>
-        <PanelBody title="Ustawienia"></PanelBody>
+        <PanelBody title="Ustawienia">
+          <ToggleControl
+            __nextHasNoMarginBottom
+            checked={attributes.enableAnimations}
+            label="Włącz animacje"
+            onChange={() =>
+              setAttributes({
+                enableAnimations: !attributes.enableAnimations,
+              })
+            }
+          />
+        </PanelBody>
       </InspectorControls>
 
       <div {...useBlockProps()}>
-        <div ref={containerRef}></div>
+        <div
+          ref={containerRef}
+          data-disable-animations={!attributes.enableAnimations}
+        />
       </div>
     </>
   );
