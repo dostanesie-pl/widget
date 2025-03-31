@@ -14,12 +14,14 @@ export default function Edit({ attributes, setAttributes, clientId }) {
   }, []);
 
   useEffect(() => {
-    if (containerRef.current) {
-      window.loadDostanesiePlWidget?.(containerRef.current);
+    const container = containerRef.current;
+
+    if (container) {
+      window.loadDostanesiePlWidget?.(container);
     }
 
     return () => {
-      window.unloadDostanesiePlWidget?.(containerRef.current);
+        window.unloadDostanesiePlWidget?.(container);
     };
   }, [attributes]);
 

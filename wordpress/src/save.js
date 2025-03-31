@@ -16,7 +16,7 @@ export default function Save({ attributes }) {
             window.addEventListener("load", () => {
               const container = document.getElementById("${blockId}");
               if (container) {
-                window.initDstplWidget?.(container);
+                window.loadDostanesiePlWidget?.(container);
               }
             });
         `,
