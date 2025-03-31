@@ -31,6 +31,9 @@ const icon = (
 registerBlockType(metadata.name, {
   icon: icon,
   attributes: {
+    blockId: {
+      type: "string"
+    }
   },
   category: "widgets",
   title: metadata.title,

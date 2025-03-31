@@ -6,8 +6,6 @@
   "title": "Kalkulator dostanesie.pl",
   "category": "widgets",
   "description": "Widget kalkulatora dostanesie.pl",
-  "attributes": {},
-  "supports": {},
   "editorScript": [
     "file:./index.js",
     "file:./static/dostanesie-pl-widget.js"

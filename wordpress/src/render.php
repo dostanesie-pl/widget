@@ -1,3 +1,4 @@
 <?php
 
-echo wp_kses_post($content);
+// not using wp_kses_post() because we need to trigger <script> and initialize widget
+echo $content;
