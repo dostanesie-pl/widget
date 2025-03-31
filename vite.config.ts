@@ -15,27 +15,53 @@ const sharedConfig: UserConfig = {
   ],
 };
 
-// Library build configuration
+/**
+ * Lib config is designed to create small files for prod usage
+ * */
 const libConfig: UserConfig = {
   ...sharedConfig,
   build: {
     minify: true,
     sourcemap: true,
+    cssCodeSplit: true, // inject css into js file
     lib: {
       entry: "src/main.tsx",
       name: "DostanesiePlWidget",
       fileName: () => `dostanesie-pl-widget.js`,
       formats: ["iife"],
     },
-    cssCodeSplit: true,
   },
   define: {
     "process.env.NODE_ENV": JSON.stringify("production"),
   },
 };
 
-// Static page build configuration
-const staticConfig: UserConfig = {
+/**
+ * Static lib build creates single file with js, css and fonts included
+ * */
+const staticLibConfig: UserConfig = {
+  ...libConfig,
+  build: {
+    ...libConfig.build,
+  },
+};
+
+/**
+ * WordPress build creates files of js and css separately
+ * */
+const wordpressConfig: UserConfig = {
+  ...libConfig,
+  build: {
+    ...libConfig.build,
+    outDir: "./wordpress/src/static/",
+  },
+};
+
+/**
+ * Single page config is used for local development and demo page.
+ * It creates multiple files for dynamic imports.
+ * */
+const singlePageConfig: UserConfig = {
   ...sharedConfig,
   build: {
     minify: true,
@@ -52,11 +78,13 @@ const staticConfig: UserConfig = {
 export default defineConfig(({ mode }) => {
   switch (mode) {
     case "lib":
-      return libConfig;
+      return staticLibConfig;
+    case "wordpress":
+      return wordpressConfig;
     case "static":
-      return staticConfig;
+      return singlePageConfig;
     case "development":
-      return staticConfig;
+      return singlePageConfig;
     default:
       throw new Error(`Unsupported mode: ${mode}`);
   }

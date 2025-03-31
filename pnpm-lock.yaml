@@ -23,6 +23,9 @@ importers:
       '@fontsource-variable/montserrat':
         specifier: 5.2.5
         version: 5.2.5
+      '@prettier/plugin-php':
+        specifier: 0.22.4
+        version: 0.22.4(prettier@3.5.3)
       '@types/node':
         specifier: 22.13.10
         version: 22.13.10
@@ -611,6 +614,11 @@ packages:
 
   '@pandacss/is-valid-prop@0.41.0':
     resolution: {integrity: sha512-BE6h6CsJk14ugIRrsazJtN3fcg+KDFRat1Bs93YFKH6jd4DOb1yUyVvC70jKqPVvg70zEcV8acZ7VdcU5TLu+w==}
+
+  '@prettier/plugin-php@0.22.4':
+    resolution: {integrity: sha512-uZWqfyrwsxScIYkmVcfnoQGFmKVMXTHD5pqYT4l8fxzm5P3XY94hTPbf8X6TFCi2QTZBIot7GS8lfIjQjldc2g==}
+    peerDependencies:
+      prettier: ^3.0.0
 
   '@rollup/rollup-android-arm-eabi@4.36.0':
     resolution: {integrity: sha512-jgrXjjcEwN6XpZXL0HUeOVGfjXhPyxAbbhD0BlXUB+abTOpbPiN5Wb3kOT7yb+uEtATNYF5x5gIfwutmuBA26w==}
@@ -1297,6 +1305,9 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
+  linguist-languages@7.29.0:
+    resolution: {integrity: sha512-KTh6ltVzr3ycnqxWw7zlzy8CqTSrpdymUzGl0EgYxK7cHoRgsX3VrZw4ExCWGCPX3uxxa7kgZwir4zeQkqjdZw==}
+
   lint-staged@15.5.0:
     resolution: {integrity: sha512-WyCzSbfYGhK7cU+UuDDkzUiytbfbi0ZdPy2orwtM75P3WTtQBzmG40cCxIa8Ii2+XjfxzLH6Be46tUfWS85Xfg==}
     engines: {node: '>=18.12.0'}
@@ -1414,6 +1425,9 @@ packages:
 
   perfect-freehand@1.2.2:
     resolution: {integrity: sha512-eh31l019WICQ03pkF3FSzHxB8n07ItqIQ++G5UV8JX0zVOXzgTGCqnRR0jJ2h9U8/2uW4W4mtGJELt9kEV0CFQ==}
+
+  php-parser@3.2.2:
+    resolution: {integrity: sha512-voj3rzCJmEbwHwH3QteON28wA6K+JbcaJEofyUZkUXmcViiXofjbSbcE5PtqtjX6nstnnAEYCFoRq0mkjP5/cg==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -2226,6 +2240,12 @@ snapshots:
       fastq: 1.19.1
 
   '@pandacss/is-valid-prop@0.41.0': {}
+
+  '@prettier/plugin-php@0.22.4(prettier@3.5.3)':
+    dependencies:
+      linguist-languages: 7.29.0
+      php-parser: 3.2.2
+      prettier: 3.5.3
 
   '@rollup/rollup-android-arm-eabi@4.36.0':
     optional: true
@@ -3186,6 +3206,8 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
+  linguist-languages@7.29.0: {}
+
   lint-staged@15.5.0:
     dependencies:
       chalk: 5.4.1
@@ -3300,6 +3322,8 @@ snapshots:
   path-type@4.0.0: {}
 
   perfect-freehand@1.2.2: {}
+
+  php-parser@3.2.2: {}
 
   picocolors@1.1.1: {}
 

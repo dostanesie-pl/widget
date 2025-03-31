@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "dostanesie-pl/widget",
+  "version": "1.0.0",
+  "title": "Kalkulator dostanesie.pl",
+  "category": "widgets",
+  "description": "Widget kalkulatora dostanesie.pl",
+  "attributes": {},
+  "supports": {},
+  "editorScript": [
+    "file:./index.js",
+    "file:./static/dostanesie-pl-widget.js"
+  ],
+  "script": "file:./static/dostanesie-pl-widget.js",
+  "render": "file:./render.php"
+}

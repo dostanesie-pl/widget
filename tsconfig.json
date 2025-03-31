@@ -16,6 +16,7 @@
   },
   "include": [
     "src",
-    "vite-env.d.ts"
+    "vite-env.d.ts",
+    "window.d.ts"
   ],
 }
