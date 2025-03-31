@@ -42,6 +42,6 @@
     "wretch": "2.11.0"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "prettier --write"
+    "*.{ts,tsx,html,css,php}": "prettier --write"
   }
 }

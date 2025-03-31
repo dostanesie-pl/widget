@@ -1,17 +1,17 @@
 @property --border-pink-angle {
-    syntax: '<angle>';
-    initial-value: 170deg;
-    inherits: false;
+  syntax: "<angle>";
+  initial-value: 170deg;
+  inherits: false;
 }
 
 @property --border-orange-angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 @property --border-center-x {
-    syntax: '<percentage>';
-    initial-value: 45%;
-    inherits: false;
+  syntax: "<percentage>";
+  initial-value: 45%;
+  inherits: false;
 }
