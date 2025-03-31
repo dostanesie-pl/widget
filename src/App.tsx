@@ -13,12 +13,22 @@ import { useEffect, useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import "./animationProperty.css";
 
-const App = (config: IWidgetConfig) => {
+const App = ({
+  config,
+  containerId,
+}: {
+  config: IWidgetConfig;
+  containerId: string | null;
+}) => {
   useEffect(() => {
+    const version = import.meta.env.VITE_WIDGET_VERSION;
+
     console.info(
-      `Załadowano widget dostanesie.pl w wersji ${import.meta.env.VITE_WIDGET_VERSION}.`,
-      "Konfiguracja:",
-      JSON.stringify(config),
+      version
+        ? `Załadowano widget dostanesie.pl w wersji "${version}".`
+        : "Załadowano widget dostanesie.pl w nieznanej wersji.",
+      `ID: ${containerId}.`,
+      `Konfiguracja: ${JSON.stringify(config)}`,
     );
   }, []);
 
