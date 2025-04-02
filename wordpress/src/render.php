@@ -10,4 +10,4 @@ if ($debug_enabled) {
 }
 
 // not using wp_kses_post() because we need to trigger <script> and initialize widget
-echo $content . WP_DEBUG;
+echo $content;
