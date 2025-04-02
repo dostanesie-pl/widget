@@ -1,44 +1,29 @@
 <?php
 
-$block_id = wp_json_encode($attributes["blockId"]);
-$disable_animations = wp_json_encode(!$attributes["enableAnimations"]);
-$show_branding = wp_json_encode($attributes["showBranding"]);
+$block_id = esc_attr($attributes["blockId"]);
+$disable_animations = $attributes["enableAnimations"] ? "false" : "true";
+$show_branding = $attributes["showBranding"] ? "true" : "false";
 
 $debug_enabled =
     (defined("WP_DEBUG") && WP_DEBUG) ||
     (isset($attributes["debug"]) && $attributes["debug"] === true);
-$debug_enabled = wp_json_encode($debug_enabled);
+$debug_enabled = $debug_enabled ? "true" : "false";
+?>
 
-$div_content =
-    '
 <div
-  id=' .
-    $block_id .
-    '
-  data-disable-animations="' .
-    $disable_animations .
-    '"
-  data-show-branding="' .
-    $show_branding .
-    '"
-  data-debug="' .
-    $debug_enabled .
-    '"
+  id="<?php echo esc_attr($block_id); ?>"
+  data-disable-animations="<?php echo esc_attr($disable_animations); ?>"
+  data-show-branding="<?php echo esc_attr($show_branding); ?>"
+  data-debug="<?php echo esc_attr($debug_enabled); ?>"
 ></div>
-';
 
-$script_content =
-    '
 <script>
     window.addEventListener("load", () => {
-      const container = document.getElementById(' .
-    $block_id .
-    ');
+      const container = document.getElementById("<?php echo esc_js(
+          $block_id
+      ); ?>");
       if (container) {
         window.loadDostanesiePlWidget?.(container);
       }
     });
 </script>
-';
-
-echo $div_content . "\n" . $script_content;
