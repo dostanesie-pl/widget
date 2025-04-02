@@ -23,14 +23,16 @@ const App = ({
   useEffect(() => {
     const version = import.meta.env.VITE_WIDGET_VERSION;
 
-    console.info(
-      version
-        ? `Załadowano widget dostanesie.pl w wersji "${version}".`
-        : "Załadowano widget dostanesie.pl w nieznanej wersji.",
-      `ID: ${containerId}.`,
-      `Konfiguracja: ${JSON.stringify(config)}`,
-    );
-  }, []);
+    if (config.debug) {
+      console.info(
+        version
+          ? `Załadowano widget dostanesie.pl w wersji "${version}".`
+          : "Załadowano widget dostanesie.pl w nieznanej wersji.",
+        `ID: ${containerId}.`,
+        `Konfiguracja: ${JSON.stringify(config)}`,
+      );
+    }
+  }, [config.debug]);
 
   const [visiblePage, setVisiblePage] = useState<number>(0);
 
@@ -139,10 +141,11 @@ const App = ({
                 }
               }}
               resultsBodyRef={resultsBodyRef}
+              showCompareWithOthers={config["show-branding"]}
             />
           </Flex>
 
-          <Footer />
+          <Footer showLogo={config["show-branding"]} />
         </Box>
       </FormProvider>
     </ChakraProvider>

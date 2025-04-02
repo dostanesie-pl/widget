@@ -38,6 +38,14 @@ registerBlockType(metadata.name, {
       type: "boolean",
       default: true,
     },
+    showBranding: {
+      type: "boolean",
+      default: false,
+    },
+    debug: {
+      type: "boolean",
+      default: false,
+    },
   },
   category: "widgets",
   title: metadata.title,

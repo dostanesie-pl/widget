@@ -1,8 +1,9 @@
-import DostanesieLogo from "@/assets/dostanesieLogo.svg";
 import { Button } from "@/components/ui/button";
+import { ResultsCompareWithOthers } from "@/features/8klasa/components/ResultsCompareWithOthers";
 import { FormValues } from "@/features/8klasa/types/calculator";
 import { calculateResult } from "@/features/8klasa/utils/calculateResult";
-import { Flex, Heading, Image, Span, Text } from "@chakra-ui/react";
+import { IWidgetConfig } from "@/features/config/types/IWidgetConfig";
+import { Flex, Heading, Span, Text } from "@chakra-ui/react";
 import { Ref } from "react";
 import { useWatch } from "react-hook-form";
 import { LuChevronLeft } from "react-icons/lu";
@@ -10,9 +11,11 @@ import { LuChevronLeft } from "react-icons/lu";
 export const ResultsView = ({
   goToCalculator,
   resultsBodyRef,
+  showCompareWithOthers,
 }: {
   goToCalculator: () => void;
   resultsBodyRef: Ref<HTMLDivElement>;
+  showCompareWithOthers: IWidgetConfig["show-branding"];
 }) => {
   const state = useWatch<FormValues>();
   let result = calculateResult(state as FormValues);
@@ -45,29 +48,7 @@ export const ResultsView = ({
             <Span fontWeight={600}> / 200 pkt</Span>
           </Text>
 
-          <Flex
-            maxW={["100%", "50%"]}
-            border="1px solid"
-            borderColor="yellowCustom.100"
-            p={5}
-            rounded="md"
-            flexDir="column"
-            gap={2}
-          >
-            <Text>
-              Chcesz zobaczyć jak Twój wynik wypada na tle wyników innych
-              uczniów?
-            </Text>
-
-            <Flex alignItems="flex-end" gap={1}>
-              <Span lineHeight="normal">Odwiedź</Span>
-              <Image src={DostanesieLogo} h={10} />
-            </Flex>
-
-            <Button fontWeight={700} size="xl" colorPalette="yellow" mt={6}>
-              Porównaj swój wynik
-            </Button>
-          </Flex>
+          {showCompareWithOthers ? <ResultsCompareWithOthers /> : null}
         </Flex>
       </Flex>
     </Flex>

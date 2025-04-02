@@ -21,7 +21,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
     }
 
     return () => {
-        window.unloadDostanesiePlWidget?.(container);
+      window.unloadDostanesiePlWidget?.(container);
     };
   }, [attributes]);
 
@@ -39,6 +39,28 @@ export default function Edit({ attributes, setAttributes, clientId }) {
               })
             }
           />
+
+          <ToggleControl
+            __nextHasNoMarginBottom
+            checked={attributes.showBranding}
+            label="Pokaż logo dostanesie.pl"
+            onChange={() =>
+              setAttributes({
+                showBranding: !attributes.showBranding,
+              })
+            }
+          />
+
+          <ToggleControl
+            __nextHasNoMarginBottom
+            checked={attributes.debug}
+            label="Włącz debugowanie"
+            onChange={() =>
+              setAttributes({
+                debug: !attributes.debug,
+              })
+            }
+          />
         </PanelBody>
       </InspectorControls>
 
@@ -46,6 +68,8 @@ export default function Edit({ attributes, setAttributes, clientId }) {
         <div
           ref={containerRef}
           data-disable-animations={!attributes.enableAnimations}
+          data-show-branding={attributes.showBranding}
+          data-debug={attributes.debug}
         />
       </div>
     </>

@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "tsx src/utils/fetchSubjectsCli/index.ts",
     "dev": "vite --host",
+    "dev:wordpress": "vite build --watch --mode wordpress",
     "build:lib": "tsc --noEmit && vite build --mode lib",
     "build:static": "tsc --noEmit && vite build --mode static",
     "build:wordpress": "tsc --noEmit && vite build --mode wordpress",

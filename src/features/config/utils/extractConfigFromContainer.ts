@@ -1,4 +1,5 @@
 import {
+  ConfigDefaults,
   ConfigSchema,
   IWidgetConfig,
 } from "@/features/config/types/IWidgetConfig";
@@ -32,7 +33,7 @@ export function extractConfigFromContainer(
       JSON.stringify(parseResult.issues),
     );
 
-    return {};
+    return ConfigDefaults;
   }
 
   return parseResult.output;
