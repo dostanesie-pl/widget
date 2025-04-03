@@ -1,5 +1,5 @@
 build/
 src/static/
-dostanesie-pl-widget.zip
+*.zip
 languages/*.mo
 languages/*.json
