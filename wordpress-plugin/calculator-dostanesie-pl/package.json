@@ -1,5 +1,5 @@
 {
-  "name": "dostanesie-pl-widget",
+  "name": "calculator-dostanesie-pl",
   "version": "1.0.0",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",

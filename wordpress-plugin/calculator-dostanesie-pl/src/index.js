@@ -36,15 +36,12 @@ registerBlockType(metadata.name, {
     },
     enableAnimations: {
       type: "boolean",
-      default: true,
     },
     showBranding: {
       type: "boolean",
-      default: false,
     },
     debug: {
       type: "boolean",
-      default: false,
     },
   },
   category: "widgets",

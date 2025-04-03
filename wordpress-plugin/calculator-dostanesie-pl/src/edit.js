@@ -1,7 +1,7 @@
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { PanelBody, ToggleControl } from "@wordpress/components";
+import { __ } from "@wordpress/i18n";
 import { useEffect, useRef } from "react";
-import { __ } from "@wordpress/i18n"
 
 // https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
 export default function Edit({ attributes, setAttributes, clientId }) {
@@ -11,6 +11,18 @@ export default function Edit({ attributes, setAttributes, clientId }) {
   useEffect(() => {
     if (!attributes.blockId) {
       setAttributes({ blockId: `dstpl-widget-${clientId}` });
+    }
+
+    if (!("enableAnimations" in attributes)) {
+      setAttributes({ enableAnimations: true });
+    }
+
+    if (!("showBranding" in attributes)) {
+      setAttributes({ showBranding: false });
+    }
+
+    if (!("debug" in attributes)) {
+      setAttributes({ debug: false });
     }
   }, []);
 
