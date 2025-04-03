@@ -50,7 +50,7 @@ All options with default values can be found in [IWidgetConfig.ts](src/features/
 ### Naming
 
 - **widget** is react application responsible for rendering calculator and its logic stored in [src](./src/) folder
-- **plugin** is a block based WordPress plugin written in JavaScript and PHP stored in [wordpress](./wordpress/) folder
+- **plugin** is a block based WordPress plugin written in JavaScript and PHP stored in [wordpress](wordpress-plugin/calculator-dostanesie-pl/) folder
 
 ### Special cases when using as WordPress plugin
 
@@ -66,14 +66,14 @@ All options with default values can be found in [IWidgetConfig.ts](src/features/
 
 ```bash
 pnpm install
-# build widget in wordpress mode
-pnpm run dev:wordpress
+# build widget in wordpress-plugin mode
+pnpm run widget:dev:wordpress
 
-cd wordpress
+cd wordpress-plugin
 pnpm install
-# start wordpress locally, requires docker
-pnpm run wp-env
+# start wordpress-plugin locally, requires docker
+pnpm run wordpress-plugin:wp-env
 
 # start webpack in watch mode, requires prebuilt widget
-pnpm run wordpress:dev
+pnpm run wordpress-plugin:dev
 ```

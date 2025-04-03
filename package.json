@@ -4,12 +4,12 @@
   "type": "module",
   "scripts": {
     "postinstall": "tsx src/utils/fetchSubjectsCli/index.ts",
-    "dev": "vite --host",
-    "dev:wordpress": "vite build --watch --mode wordpress",
-    "build:lib": "tsc --noEmit && vite build --mode lib",
-    "build:static": "tsc --noEmit && vite build --mode static",
-    "build:wordpress": "tsc --noEmit && vite build --mode wordpress",
-    "preview": "pnpm build:static && vite preview --mode static --host",
+    "widget:dev": "vite --host",
+    "widget:dev:wordpress": "vite build --watch --mode wordpress",
+    "widget:build:lib": "tsc --noEmit && vite build --mode lib",
+    "widget:build:static": "tsc --noEmit && vite build --mode static",
+    "widget:build:wordpress": "tsc --noEmit && vite build --mode wordpress",
+    "widget:preview": "pnpm build:static && vite preview --mode static --host",
     "fmt": "prettier --write src/* tmp/plugin/*",
     "fmt:staged": "lint-staged --no-stash",
     "prepare": "husky"

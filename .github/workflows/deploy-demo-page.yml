@@ -30,7 +30,7 @@ jobs:
           echo "VITE_WIDGET_VERSION=\"#${SHORT_SHA} - ${TIMESTAMP}\"" >> $GITHUB_ENV
 
       - name: Build static files
-        run: pnpm build:static
+        run: pnpm widget:build:static
 
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@v3

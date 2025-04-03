@@ -45,7 +45,7 @@ const libConfig = mergeConfig(sharedConfig, {
  * */
 const wordpressConfig = mergeConfig(libConfig, {
   build: {
-    outDir: "./wordpress/src/static/",
+    outDir: "./wordpress-plugin/calculator-dostanesie-pl/src/static/",
     lib: {
       entry: "src/entrypoints/wordpress.tsx",
     },

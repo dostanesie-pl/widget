@@ -4,10 +4,10 @@
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
   "scripts": {
-    "wordpress:build": "wp-scripts build --blocks-manifest",
-    "wordpress:plugin-zip": "wp-scripts plugin-zip",
-    "wordpress:dev": "wp-scripts start --blocks-manifest",
-    "wp-env": "wp-env start"
+    "wordpress-plugin:build": "wp-scripts build --blocks-manifest",
+    "wordpress-plugin:plugin-zip": "wp-scripts plugin-zip",
+    "wordpress-plugin:dev": "wp-scripts start --blocks-manifest",
+    "wordpress-plugin:wp-env": "wp-env start"
   },
   "devDependencies": {
     "@types/wordpress__block-editor": "11.5.16",
