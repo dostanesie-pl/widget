@@ -65,6 +65,8 @@ All options with default values can be found in [IWidgetConfig.ts](src/features/
 ### WordPress plugin development
 
 ```bash
+cd wordpress-plugin/calculator-dostanesie-pl
+
 pnpm install
 # build widget in wordpress-plugin mode
 pnpm run widget:dev:wordpress
@@ -76,4 +78,24 @@ pnpm run wordpress-plugin:wp-env
 
 # start webpack in watch mode, requires prebuilt widget
 pnpm run wordpress-plugin:dev
+```
+
+### WordPress plugin i18n
+
+Make sure you have [wp-cli](https://wp-cli.org/) installed.
+
+```bash
+cd wordpress-plugin/calculator-dostanesie-pl
+
+# gather all strings from source code
+pnpm run wordpress-plugin:generate-pot
+
+# copy pot file to actual translation file
+cp languages/dstpl-pl_PL.pot languages/dstpl-pl_PL.po
+
+# generate json used by frontend part
+pnpm run wordpress-plugin:generate-json
+
+# generate json
+pnpm run wordpress-plugin:generate-mo
 ```

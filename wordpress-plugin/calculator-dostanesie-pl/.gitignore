@@ -1,3 +1,5 @@
 build/
 src/static/
 dostanesie-pl-widget.zip
+languages/*.mo
+languages/*.json

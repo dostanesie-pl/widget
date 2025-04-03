@@ -3,13 +3,14 @@
   "apiVersion": 3,
   "name": "dostanesie-pl/widget",
   "version": "1.0.0",
-  "title": "Kalkulator dostanesie.pl",
+  "title": "dostanesie.pl calculator",
   "category": "widgets",
-  "description": "Widget kalkulatora dostanesie.pl",
+  "description": "Place dostanesie.pl calculator on your webpage",
   "editorScript": [
     "file:./index.js",
     "file:./static/dostanesie-pl-widget.js"
   ],
   "script": "file:./static/dostanesie-pl-widget.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "textdomain": "dstpl"
 }

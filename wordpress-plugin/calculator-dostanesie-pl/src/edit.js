@@ -1,6 +1,7 @@
 import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
 import { PanelBody, ToggleControl } from "@wordpress/components";
 import { useEffect, useRef } from "react";
+import { __ } from "@wordpress/i18n"
 
 // https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
 export default function Edit({ attributes, setAttributes, clientId }) {
@@ -32,7 +33,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
           <ToggleControl
             __nextHasNoMarginBottom
             checked={attributes.enableAnimations}
-            label="Włącz animacje"
+            label={__("Enable animations", "dstpl")}
             onChange={() =>
               setAttributes({
                 enableAnimations: !attributes.enableAnimations,
@@ -43,7 +44,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
           <ToggleControl
             __nextHasNoMarginBottom
             checked={attributes.showBranding}
-            label="Pokaż logo dostanesie.pl"
+            label={__("Show dostanesie.pl logo", "dstpl")}
             onChange={() =>
               setAttributes({
                 showBranding: !attributes.showBranding,
@@ -54,7 +55,7 @@ export default function Edit({ attributes, setAttributes, clientId }) {
           <ToggleControl
             __nextHasNoMarginBottom
             checked={attributes.debug}
-            label="Włącz debugowanie"
+            label={__("Enable debugging", "dstpl")}
             onChange={() =>
               setAttributes({
                 debug: !attributes.debug,
