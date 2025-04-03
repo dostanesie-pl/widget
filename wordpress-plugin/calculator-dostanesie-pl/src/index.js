@@ -44,9 +44,6 @@ registerBlockType(metadata.name, {
       type: "boolean",
     },
   },
-  category: "widgets",
-  title: metadata.title,
-  name: metadata.name,
   edit: Edit,
   save: Save,
 });
