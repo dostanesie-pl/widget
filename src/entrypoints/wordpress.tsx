@@ -28,3 +28,24 @@ window.unloadDostanesiePlWidget = (container) => {
   mountedContainer?.unmount();
   mountedContainers.delete(containerId);
 };
+
+window.addEventListener("load", () => {
+  const regex = /^dstpl-widget-.*$/;
+  const widgetContainers = Array.from(document.querySelectorAll("div")).filter(
+    (div) => regex.test(div.id),
+  );
+
+  widgetContainers.forEach((container) => {
+    const containerId = container.getAttribute("id");
+    const root = handleLoadWidget(container);
+
+    if (!containerId) {
+      console.error("Container ID not found");
+      return;
+    }
+
+    const mountedContainer = mountedContainers.get(containerId);
+    mountedContainer?.unmount();
+    mountedContainers.set(containerId, root);
+  });
+});

@@ -1,4 +1,7 @@
 <?php
+if (!defined("ABSPATH")) {
+    exit(); // Exit if accessed directly.
+}
 
 $block_id = esc_attr($attributes["blockId"]);
 $disable_animations = $attributes["enableAnimations"] ? "false" : "true";
@@ -16,14 +19,3 @@ $debug_enabled = $debug_enabled ? "true" : "false";
   data-show-branding="<?php echo esc_attr($show_branding); ?>"
   data-debug="<?php echo esc_attr($debug_enabled); ?>"
 ></div>
-
-<script>
-    window.addEventListener("load", () => {
-      const container = document.getElementById("<?php echo esc_js(
-          $block_id
-      ); ?>");
-      if (container) {
-        window.loadDostanesiePlWidget?.(container);
-      }
-    });
-</script>
