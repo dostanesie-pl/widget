@@ -66,17 +66,17 @@ jobs:
       - name: Check if tag already exists
         id: check_tag
         run: |
-          if [ -d "svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}" ]; then
+          if [ -d "svn/tags/${PLUGIN_VERSION}" ]; then
             echo "Tag ${PLUGIN_VERSION} already exists in SVN repo. Aborting."
             exit 1
           fi
 
       - name: Unzip WordPress plugin to svn
         run: |
-          unzip wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.zip -d svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}
-          mv svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}/calculator-dostanesie-pl/* svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}/
-          rmdir svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}/calculator-dostanesie-pl/
+          unzip wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.zip -d svn/tags/${PLUGIN_VERSION}
+          mv svn/tags/${PLUGIN_VERSION}/calculator-dostanesie-pl/* svn/tags/${PLUGIN_VERSION}/
+          rmdir svn/tags/${PLUGIN_VERSION}/calculator-dostanesie-pl/
 
       - name: Check svn status
-        working-directory: svn/dostanesie-pl-calculator
+        working-directory: svn/
         run: svn status
