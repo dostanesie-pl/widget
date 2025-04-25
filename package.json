@@ -1,6 +1,6 @@
 {
   "name": "dostanesie-pl-widget",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "postinstall": "tsx src/utils/fetchSubjectsCli/index.ts",
