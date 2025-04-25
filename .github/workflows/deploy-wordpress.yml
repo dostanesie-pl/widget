@@ -1,0 +1,79 @@
+name: Deploy wordpress
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check if all versions are the same
+        run: ./scripts/checkVersions.sh --verbose
+
+      - name: Get plugin version
+        id: get_version
+        run: |
+          PLUGIN_VERSION=$(./scripts/checkVersions.sh --get-version)
+          echo "PLUGIN_VERSION=${PLUGIN_VERSION}" >> $GITHUB_ENV
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0
+          run_install: false
+
+      - name: Install SVN
+        run: sudo apt-get install subversion
+
+      - name: Install widget dependencies
+        run: pnpm install
+
+      - name: Install WordPress plugin dependencies
+        working-directory: wordpress-plugin/calculator-dostanesie-pl
+        run: pnpm install
+
+      - name: Build widget for WordPress
+        run: pnpm run widget:build:wordpress
+
+      - name: Generate WordPress translations
+        working-directory: wordpress-plugin/calculator-dostanesie-pl
+        run: |
+          pnpm run wordpress-plugin:generate-mo
+          pnpm run wordpress-plugin:generate-json
+
+      - name: Build WordPress plugin
+        working-directory: wordpress-plugin/calculator-dostanesie-pl
+        run: pnpm run wordpress-plugin:build
+
+      - name: Prepare zip of WordPress plugin
+        working-directory: wordpress-plugin/calculator-dostanesie-pl
+        run: pnpm run wordpress-plugin:plugin-zip
+
+      - name: Checkout svn repo
+        run: svn checkout https://plugins.svn.wordpress.org/dostanesie-pl-calculator --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} svn/
+
+      - name: Check if tag already exists
+        id: check_tag
+        run: |
+          if [ -d "svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}" ]; then
+            echo "Tag ${PLUGIN_VERSION} already exists in SVN repo. Aborting."
+            exit 1
+          fi
+
+      - name: Unzip WordPress plugin to svn
+        run: |
+          unzip wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.zip -d svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}
+          mv svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}/calculator-dostanesie-pl/* svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}/
+          rmdir svn/dostanesie-pl-calculator/tags/${PLUGIN_VERSION}/calculator-dostanesie-pl/
+
+      - name: Check svn status
+        working-directory: svn/dostanesie-pl-calculator
+        run: svn status
