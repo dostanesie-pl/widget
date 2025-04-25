@@ -33,6 +33,17 @@ extract_po_version() {
     fi
 }
 
+# Function to extract version from main PHP plugin file
+extract_php_version() {
+    local file=$1
+    if [ -f "$file" ]; then
+        grep "Version:" "$file" | head -1 | sed 's/.*Version:[ \t]*\([0-9.]*\).*/\1/'
+    else
+        echo "Error: File $file not found"
+        return 1
+    fi
+}
+
 # Function to check if all versions are the same
 check_versions() {
     local first_version=$1
@@ -83,9 +94,11 @@ main() {
     local readme_version=$(extract_readme_version "./wordpress-plugin/calculator-dostanesie-pl/readme.txt")
     local po_pl_version=$(extract_po_version "./wordpress-plugin/calculator-dostanesie-pl/languages/dstpl-pl_PL.po")
     local pot_version=$(extract_po_version "./wordpress-plugin/calculator-dostanesie-pl/languages/dstpl.pot")
+    local php_version=$(extract_php_version "./wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.php")
 
     # Check if any extraction failed
-    if [[ -z "$main_pkg_version" || -z "$wp_pkg_version" || -z "$readme_version" || -z "$po_pl_version" || -z "$pot_version" ]]; then
+    if [[ -z "$main_pkg_version" || -z "$wp_pkg_version" || -z "$readme_version" ||
+          -z "$po_pl_version" || -z "$pot_version" || -z "$php_version" ]]; then
         [[ "$option" != "--get-version" ]] && echo "❌ Error: Failed to extract one or more versions."
         return 1
     fi
@@ -93,7 +106,7 @@ main() {
     # Determine behavior based on option
     if [[ "$option" == "--check" ]]; then
         # Check if all versions are the same
-        if check_versions "$main_pkg_version" "$wp_pkg_version" "$readme_version" "$po_pl_version" "$pot_version"; then
+        if check_versions "$main_pkg_version" "$wp_pkg_version" "$readme_version" "$po_pl_version" "$pot_version" "$php_version"; then
             echo "✅ Success: All versions match ($main_pkg_version)"
             return 0
         else
@@ -102,7 +115,7 @@ main() {
         fi
     elif [[ "$option" == "--get-version" ]]; then
         # Only output version if all match
-        if check_versions "$main_pkg_version" "$wp_pkg_version" "$readme_version" "$po_pl_version" "$pot_version"; then
+        if check_versions "$main_pkg_version" "$wp_pkg_version" "$readme_version" "$po_pl_version" "$pot_version" "$php_version"; then
             echo "$main_pkg_version"
             return 0
         else
@@ -116,9 +129,10 @@ main() {
         echo "- ./wordpress-plugin/calculator-dostanesie-pl/readme.txt: $readme_version"
         echo "- ./wordpress-plugin/calculator-dostanesie-pl/languages/dstpl-pl_PL.po: $po_pl_version"
         echo "- ./wordpress-plugin/calculator-dostanesie-pl/languages/dstpl.pot: $pot_version"
+        echo "- ./wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.php: $php_version"
 
         # Check if all versions are the same
-        if check_versions "$main_pkg_version" "$wp_pkg_version" "$readme_version" "$po_pl_version" "$pot_version"; then
+        if check_versions "$main_pkg_version" "$wp_pkg_version" "$readme_version" "$po_pl_version" "$pot_version" "$php_version"; then
             echo -e "\n✅ Success: All versions match ($main_pkg_version)"
             return 0
         else
