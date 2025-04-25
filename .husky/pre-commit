@@ -1,1 +1,2 @@
+./scripts/checkVersions.sh --verbose
 pnpm fmt:staged
