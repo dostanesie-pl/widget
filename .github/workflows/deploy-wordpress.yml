@@ -80,17 +80,10 @@ jobs:
           mv svn/trunk/calculator-dostanesie-pl/* svn/trunk/
           rmdir svn/trunk/calculator-dostanesie-pl/
 
-      - name: Check if tag already exists
-        if: ${{ inputs.is_stable_release }}
-        run: |
-          if [ -d "svn/tags/${{ inputs.version }}" ]; then
-            echo "Tag ${{ inputs.version }} already exists in SVN repo. Aborting."
-            exit 1
-          fi
-
       - name: Unzip WordPress plugin to svn tag
         if: ${{ inputs.is_stable_release }}
         run: |
+          rm -rf svn/tags/${{ inputs.version }}
           unzip wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.zip -d svn/tags/${{ inputs.version }}
           mv svn/tags/${{ inputs.version }}/calculator-dostanesie-pl/* svn/tags/${{ inputs.version }}/
           rmdir svn/tags/${{ inputs.version }}/calculator-dostanesie-pl/
