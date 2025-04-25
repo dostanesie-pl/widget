@@ -1,9 +1,18 @@
-name: Deploy demo page
+name: Build and deploy demo page
 
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version of the container
+        required: true
+        type: string
+
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
 
 jobs:
   build:
@@ -23,14 +32,10 @@ jobs:
           version: 9.0
           run_install: true
 
-      - name: Set VITE_WIDGET_VERSION
-        run: |
-          SHORT_SHA=${GITHUB_SHA::7}
-          TIMESTAMP=$(date +"%d.%m %H:%M")
-          echo "VITE_WIDGET_VERSION=\"#${SHORT_SHA} - ${TIMESTAMP}\"" >> $GITHUB_ENV
-
       - name: Build static files
         run: pnpm widget:build:static
+        env:
+          VITE_WIDGET_VERSION: ${{ inputs.version }}
 
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@v3

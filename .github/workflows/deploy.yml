@@ -1,0 +1,113 @@
+name: Release
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - master
+
+jobs:
+  prepare_release:
+    runs-on: ubuntu-latest
+    outputs:
+      release_version: ${{ steps.set_release_version.outputs.release_version }}
+      is_stable_release: ${{ steps.set_release_version.outputs.is_stable_release }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if all versions are the same
+        run: ./scripts/checkVersions.sh --verbose
+
+      - name: Get version
+        id: get_version
+        run: |
+          VERSION=$(./scripts/checkVersions.sh --get-version)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check for existing git tag
+        id: check_tag
+        run: |
+          if git rev-parse "v${{ env.VERSION }}" >/dev/null 2>&1; then
+            echo "TAG_EXISTS=true" >> $GITHUB_ENV
+          else
+            echo "TAG_EXISTS=false" >> $GITHUB_ENV
+          fi
+
+      - name: Set version
+        id: set_release_version
+        run: |
+          if [ "${{ env.TAG_EXISTS }}" = "true" ]; then
+            SHORT_SHA=$(git rev-parse --short HEAD)
+            echo "release_version=${{ env.VERSION }}-$SHORT_SHA" >> $GITHUB_OUTPUT
+            echo "is_stable_release=false" >> $GITHUB_OUTPUT  
+          else
+            echo "release_version=${{ env.VERSION }}" >> $GITHUB_OUTPUT
+            echo "is_stable_release=true" >> $GITHUB_OUTPUT
+          fi
+
+  # --- Common release jobs triggered on every push to the master branch --- #
+
+  release_docker:
+    needs: prepare_release
+    uses: ./.github/workflows/build-and-deploy-cdn.yml
+    secrets: inherit
+    with:
+      version: ${{ needs.prepare_release.outputs.release_version }}
+
+  release_demo_page:
+    needs: prepare_release
+    uses: ./.github/workflows/deploy-demo-page.yml
+    secrets: inherit
+    with:
+      version: ${{ needs.prepare_release.outputs.release_version }}
+
+  wordpress_build:
+    needs: prepare_release
+    uses: ./.github/workflows/deploy-wordpress.yml
+    secrets: inherit
+    with:
+      version: ${{ needs.prepare_release.outputs.release_version }}
+      is_stable_release: ${{ needs.prepare_release.outputs.is_stable_release == 'true' }}
+
+  # --- Stable release jobs --- #
+
+  create_git_tag:
+    needs: prepare_release
+    if: needs.prepare_release.outputs.is_stable_release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create Git tag
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag -a "v${{ needs.prepare_release.outputs.release_version }}" -m "chore: release ${{ needs.prepare_release.outputs.release_version }}"
+          git push origin "v${{ needs.prepare_release.outputs.release_version }}"
+
+  create_github_release:
+    needs: [prepare_release, create_git_tag]
+    if: needs.prepare_release.outputs.is_stable_release == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v${{ needs.prepare_release.outputs.release_version }}"
+          draft: false
+          prerelease: false
+          make_latest: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

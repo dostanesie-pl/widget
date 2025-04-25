@@ -1,7 +1,26 @@
-name: Deploy wordpress
+name: Build and deploy wordpress plugin
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version of the container
+        required: true
+        type: string
+      is_stable_release:
+        description: Is this a stable release?
+        required: true
+        default: false
+        type: boolean
+
+  workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
+      is_stable_release:
+        required: true
+        type: boolean
 
 jobs:
   build_and_deploy:
@@ -9,15 +28,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Check if all versions are the same
-        run: ./scripts/checkVersions.sh --verbose
-
-      - name: Get plugin version
-        id: get_version
-        run: |
-          PLUGIN_VERSION=$(./scripts/checkVersions.sh --get-version)
-          echo "PLUGIN_VERSION=${PLUGIN_VERSION}" >> $GITHUB_ENV
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -63,20 +73,39 @@ jobs:
       - name: Checkout svn repo
         run: svn checkout https://plugins.svn.wordpress.org/dostanesie-pl-calculator --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} svn/
 
-      - name: Check if tag already exists
-        id: check_tag
+      - name: Unzip WordPress plugin to svn trunk
         run: |
-          if [ -d "svn/tags/${PLUGIN_VERSION}" ]; then
-            echo "Tag ${PLUGIN_VERSION} already exists in SVN repo. Aborting."
+          rm -rf svn/trunk/*
+          unzip wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.zip -d svn/trunk
+          mv svn/trunk/calculator-dostanesie-pl/* svn/trunk/
+          rmdir svn/trunk/calculator-dostanesie-pl/
+
+      - name: Check if tag already exists
+        if: ${{ inputs.is_stable_release }}
+        run: |
+          if [ -d "svn/tags/${{ inputs.version }}" ]; then
+            echo "Tag ${{ inputs.version }} already exists in SVN repo. Aborting."
             exit 1
           fi
 
-      - name: Unzip WordPress plugin to svn
+      - name: Unzip WordPress plugin to svn tag
+        if: ${{ inputs.is_stable_release }}
         run: |
-          unzip wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.zip -d svn/tags/${PLUGIN_VERSION}
-          mv svn/tags/${PLUGIN_VERSION}/calculator-dostanesie-pl/* svn/tags/${PLUGIN_VERSION}/
-          rmdir svn/tags/${PLUGIN_VERSION}/calculator-dostanesie-pl/
+          unzip wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.zip -d svn/tags/${{ inputs.version }}
+          mv svn/tags/${{ inputs.version }}/calculator-dostanesie-pl/* svn/tags/${{ inputs.version }}/
+          rmdir svn/tags/${{ inputs.version }}/calculator-dostanesie-pl/
 
       - name: Check svn status
         working-directory: svn/
         run: svn status
+
+      - name: Add all changes to svn
+        working-directory: svn/
+        run: |
+          svn add --force .
+          svn status
+
+      - name: Commit changes to svn
+        working-directory: svn/
+        run: |
+          svn commit -m "chore: release version ${{ inputs.version }}" --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} --no-auth-cache
