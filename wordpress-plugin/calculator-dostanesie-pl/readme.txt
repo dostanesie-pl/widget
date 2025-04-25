@@ -4,7 +4,7 @@ Tags: education, calculator, dostanesie, dostanesie.pl, kalkulator
 Requires at least: 6.7
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,20 @@ Source code is available at [https://github.com/dostanesie-pl/widget](https://gi
 4. Ustawienia kalkulatora
 
 == Changelog ==
+
+= 1.0.2 =
+PL:
+- Aktualizacja zależności
+
+EN:
+- Dependencies update
+
+= 1.0.1 =
+PL:
+- Utworzenie nowej wersji przez github action
+
+EN:
+- Automated github action release
 
 = 1.0.0 =
 PL:
