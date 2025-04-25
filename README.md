@@ -1,6 +1,10 @@
 # Calculator widget dostanesie.pl
 
-## Usage
+## WordPress installation
+
+Install the plugin from [https://wordpress.org/plugins/dostanesie-pl-calculator/](https://wordpress.org/plugins/dostanesie-pl-calculator/)
+
+## Installation without WordPress
 
 1. Add `<script>` to `<head>` section of your page
 
