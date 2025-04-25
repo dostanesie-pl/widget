@@ -50,7 +50,8 @@ All options with default values can be found in [IWidgetConfig.ts](src/features/
 ### Naming
 
 - **widget** is react application responsible for rendering calculator and its logic stored in [src](./src/) folder
-- **plugin** is a block based WordPress plugin written in JavaScript and PHP stored in [wordpress](wordpress-plugin/calculator-dostanesie-pl/) folder
+- **plugin** is a block based WordPress plugin written in JavaScript and PHP stored
+  in [wordpress](wordpress-plugin/calculator-dostanesie-pl/) folder
 
 ### Special cases when using as WordPress plugin
 
@@ -98,4 +99,32 @@ pnpm run wordpress-plugin:generate-json
 
 # generate json
 pnpm run wordpress-plugin:generate-mo
+```
+
+## Uploading svn plugin
+
+### Build and prepare files
+
+```bash
+pnpm run widget:build:wordpress
+
+cd wordpress-plugin/calculator-dostanesie-pl
+
+pnpm run wordpress-plugin:generate-mo
+pnpm run wordpress-plugin:generate-json
+pnpm run wordpress-plugin:build
+pnpm run wordpress-plugin:plugin-zip
+```
+
+### Upload to svn
+
+```bash
+svn checkout https://plugins.svn.wordpress.org/dostanesie-pl-calculator --username $SVN_USERNAME --password $SVN_PASSWORD svn/
+
+unzip wordpress-plugin/calculator-dostanesie-pl/calculator-dostanesie-pl.zip -d svn/dostanesie-pl-calculator/tags/1.0.1/
+mv svn/dostanesie-pl-calculator/tags/1.0.1/calculator-dostanesie-pl/* svn/dostanesie-pl-calculator/tags/1.0.1/
+rmdir svn/dostanesie-pl-calculator/tags/1.0.1/calculator-dostanesie-pl/
+
+cd svn/dostanesie-pl-calculator/
+svn status
 ```
