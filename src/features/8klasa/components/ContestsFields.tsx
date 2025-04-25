@@ -29,10 +29,13 @@ export const ContestsFields = () => {
                   gap={2}
                   flexDirection="column"
                   onValueChange={(e) => {
-                    setValue(
-                      `contests.${index}.selectedFieldIndex`,
-                      parseInt(e.value),
-                    );
+                    const value = e.value;
+                    if (typeof value === "string") {
+                      setValue(
+                        `contests.${index}.selectedFieldIndex`,
+                        parseInt(value),
+                      );
+                    }
                   }}
                   name={`contests.${index}.selectedFieldIndex`}
                   colorScheme="yellow"
